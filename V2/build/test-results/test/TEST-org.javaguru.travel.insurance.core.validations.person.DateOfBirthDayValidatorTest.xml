@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.javaguru.travel.insurance.core.validations.person.DateOfBirthDayValidatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.004">
+  <properties/>
+  <testcase name="Тест: Дата рождения раньше настоящего" classname="org.javaguru.travel.insurance.core.validations.person.DateOfBirthDayValidatorTest" time="0.001"/>
+  <testcase name="Тест: Дата рождения не должна быть null" classname="org.javaguru.travel.insurance.core.validations.person.DateOfBirthDayValidatorTest" time="0.002"/>
+  <testcase name="Тест: Дата рождения позже настоящего" classname="org.javaguru.travel.insurance.core.validations.person.DateOfBirthDayValidatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

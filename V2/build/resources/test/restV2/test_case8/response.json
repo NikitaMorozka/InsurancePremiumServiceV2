@@ -1,0 +1,26 @@
+{
+  "errors": [
+    {
+      "errorCode": "ERROR_CODE_9",
+      "description": "Country not in database!"
+    },
+    {
+      "errorCode": "ERROR_CODE_8",
+      "description": "Risk Type ic = TRAMEDICAL not supported!"
+    },
+    {
+      "errorCode": "ERROR_CODE_8",
+      "description": "Risk Type ic = TRAVEL_CANCEL not supported!"
+    },
+    {
+      "errorCode": "ERROR_CODE_8",
+      "description": "Risk Type ic = TRAVEL_LOSS_BAE not supported!"
+    }
+  ],
+  "agreementDateFrom": null,
+  "agreementDateTo": null,
+  "country": null,
+  "medicalRiskLimitLevel": null,
+  "agreementPremium": null,
+  "persons": null
+}

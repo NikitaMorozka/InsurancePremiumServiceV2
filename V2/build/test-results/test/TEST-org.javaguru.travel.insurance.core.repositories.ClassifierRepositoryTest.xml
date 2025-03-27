@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.028">
+  <properties/>
+  <testcase name="Test: Can't find record with Fake title" classname="org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest" time="0.013"/>
+  <testcase name="Test: Can find record by Title" classname="org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest" time="0.009"/>
+  <testcase name="Test: Classifier table is present" classname="org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest" time="0.004"/>
+  <system-out><![CDATA[02:59:30.998 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest]: ClassifierRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:59:31.002 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.core.repositories.ClassifierRepositoryTest
+Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.title=?
+Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.title=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

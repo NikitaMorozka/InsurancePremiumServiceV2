@@ -1,0 +1,21 @@
+{
+  "errors": [
+    {
+      "errorCode": "ERROR_CODE_9",
+      "description": "Country not in database!"
+    },
+    {
+      "errorCode": "ERROR_CODE_3",
+      "description": "DateFrom must not be null!"
+    }
+  ],
+  "personFirstName": null,
+  "personLastName": null,
+  "dateOfBirth": null,
+  "agreementDateFrom": null,
+  "agreementDateTo": null,
+  "country": null,
+  "medicalRiskLimitLevel": null,
+  "agreementPremium": null,
+  "risks": null
+}
