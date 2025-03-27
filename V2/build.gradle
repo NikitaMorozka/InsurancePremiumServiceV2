@@ -1,0 +1,95 @@
+plugins {
+	id 'org.springframework.boot' version "3.2.5"
+	id 'maven-publish'// Плагин для публикации в Maven-репозиторий
+}
+
+dependencies {
+	implementation('mysql:mysql-connector-java:8.0.22')
+	implementation('org.hibernate:hibernate-core:6.5.0.Final')
+	implementation ('org.liquibase:liquibase-core:4.27.0')
+
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa:3.2.5')
+	runtimeOnly 'com.h2database:h2:2.2.224'
+
+
+	implementation('org.springframework.boot:spring-boot-starter-web:3.2.5')
+//	implementation('org.springframework.boot:spring-boot-starter-thymeleaf:3.2.5')
+
+	implementation('com.fasterxml.jackson.core:jackson-core:2.14.2')
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
+	implementation('com.google.guava:guava:31.0.1-jre')
+
+	compileOnly('org.projectlombok:lombok:1.18.32')
+	annotationProcessor('org.projectlombok:lombok:1.18.32')
+
+	implementation 'ch.qos.logback:logback-classic:0.9.26'
+
+
+
+
+
+	testCompileOnly('org.projectlombok:lombok:1.18.32')
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.32')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test:3.2.5')
+
+	testImplementation 'org.mockito:mockito-core:5.15.2'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.15.2'
+
+	testImplementation('com.h2database:h2:2.2.224')
+
+	testImplementation('org.hamcrest:hamcrest:2.2')
+
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.0'
+
+	testImplementation('uk.org.webcompere:model-assert:1.0.0')
+
+
+	test {
+		useJUnitPlatform()
+	}
+
+}
+
+jar {
+	enabled = false
+}
+
+//./gradlew bootJar
+bootJar {
+	enabled = true
+	archiveBaseName = 'insurance-calculator'
+	archiveVersion = '1.0.6-test'
+}
+
+//./gradlew publish
+//java -jar student_morozov_nikita/build/libs/insurance-calculator-1.0.6-test.jar
+publishing {//настройка публикации:
+	publications {
+		mavenJava(MavenPublication) {//mavenJava(MavenPublication) — создаётся публикация для Maven.
+			artifact bootJar  //указывает, что нужно публиковать Spring Boot jar-файл, который создаётся с помощью bootJar (это специальная сборка Spring Boot).
+			// groupId, artifactId, version — это идентификаторы проекта,которые нужны Maven для распознавания артефакта.
+			groupId = 'org.javaguru'
+			artifactId = 'insurance-calculator'
+			version = '1.0.5'
+
+			// Это метаданные о проекте: Название, описание и лицензия (что удобно при публикации в общий репозиторий, например, Maven Central).
+			pom {
+				name = 'Insurance Calculator Application'
+				description = 'Application to calculate travel insurance premium'
+				licenses {
+					license {
+						name = 'The Apache License, Version 2.0'
+						url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					}
+				}
+			}
+		}
+	}
+
+	// куда публиковать:
+	repositories {
+		mavenLocal()
+	}
+}
