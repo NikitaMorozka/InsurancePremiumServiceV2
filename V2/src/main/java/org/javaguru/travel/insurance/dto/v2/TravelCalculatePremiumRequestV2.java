@@ -31,7 +31,7 @@ public class TravelCalculatePremiumRequestV2 {
 
     @JsonAlias("selected_risks") private List<String> selectedRisks;
 
-    @JsonAlias("persons") List<PersonRequest> person;
+    @JsonAlias("persons") private List<PersonRequest> persons;
 
 
 

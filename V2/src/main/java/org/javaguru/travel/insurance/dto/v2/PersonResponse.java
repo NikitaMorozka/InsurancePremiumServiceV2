@@ -25,9 +25,12 @@ public class PersonResponse {
 
     private String personLastName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")  @DateTimeFormat(pattern = "yyyy-MM-dd") private LocalDate dateOfBirth;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirthDate;
 
-    @JsonSerialize(using = BigDecimalSerializer.class) private BigDecimal personAgreementPremium;
+    @JsonSerialize(using = BigDecimalSerializer.class)
+    private BigDecimal personAgreementPremium;
 
     @JsonAlias("person_risks") private List<Risks> risks;
 }
