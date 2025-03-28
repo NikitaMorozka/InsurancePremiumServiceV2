@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.javaguru.travel.insurance.dto.Risks;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -31,7 +32,10 @@ public class TravelCalculatePremiumRequestV2 {
 
     @JsonAlias("selected_risks") private List<String> selectedRisks;
 
+
     @JsonAlias("persons") private List<PersonRequest> persons;
+
+
 
 
 

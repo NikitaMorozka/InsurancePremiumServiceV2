@@ -77,6 +77,7 @@ public class DtoV2Converter { // написать тесты
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
         );
 
+
         person.setRisks(personDTO.getRisks().stream()
                 .map(riskDTO -> new Risks(riskDTO.getRiskIc(), riskDTO.getPremium())).toList());
 

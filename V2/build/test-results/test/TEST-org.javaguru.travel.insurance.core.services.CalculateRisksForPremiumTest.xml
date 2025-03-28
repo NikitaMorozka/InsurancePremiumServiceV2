@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.services.CalculateRisksForPremiumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.091">
+<testsuite name="org.javaguru.travel.insurance.core.services.CalculateRisksForPremiumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:38" hostname="Nikita.lan" time="0.09">
   <properties/>
-  <testcase name="shouldCalculateRiskPremiumForAllPersons()" classname="org.javaguru.travel.insurance.core.services.CalculateRisksForPremiumTest" time="0.091"/>
+  <testcase name="shouldCalculateRiskPremiumForAllPersons()" classname="org.javaguru.travel.insurance.core.services.CalculateRisksForPremiumTest" time="0.09"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

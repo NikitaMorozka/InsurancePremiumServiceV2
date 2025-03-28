@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.111s</div>
+<div class="counter">0.122s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,25 +81,25 @@
 <tr>
 <td class="success">[10] testCase=test_case7</td>
 <td class="success">controllerTest(String)[10]</td>
-<td class="success">0.006s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[11] testCase=test_case8</td>
 <td class="success">controllerTest(String)[11]</td>
-<td class="success">0.006s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[12] testCase=test_case9</td>
 <td class="success">controllerTest(String)[12]</td>
-<td class="success">0.007s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[1] testCase=test_case1</td>
 <td class="success">controllerTest(String)[1]</td>
-<td class="success">0.018s</td>
+<td class="success">0.020s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -111,25 +111,25 @@
 <tr>
 <td class="success">[3] testCase=test_case11</td>
 <td class="success">controllerTest(String)[3]</td>
-<td class="success">0.011s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[4] testCase=test_case12</td>
 <td class="success">controllerTest(String)[4]</td>
-<td class="success">0.012s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[5] testCase=test_case2</td>
 <td class="success">controllerTest(String)[5]</td>
-<td class="success">0.011s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[6] testCase=test_case3</td>
 <td class="success">controllerTest(String)[6]</td>
-<td class="success">0.009s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -141,13 +141,13 @@
 <tr>
 <td class="success">[8] testCase=test_case5</td>
 <td class="success">controllerTest(String)[8]</td>
-<td class="success">0.008s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[9] testCase=test_case6</td>
 <td class="success">controllerTest(String)[9]</td>
-<td class="success">0.008s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -155,8 +155,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>02:59:32.977 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.rest.TravelCalculatePremiumControllerV2Test]: TravelCalculatePremiumControllerV2Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-02:59:32.979 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.rest.TravelCalculatePremiumControllerV2Test
+<pre>17:06:40.434 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.rest.TravelCalculatePremiumControllerV2Test]: TravelCalculatePremiumControllerV2Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:06:40.437 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.rest.TravelCalculatePremiumControllerV2Test
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -174,7 +174,7 @@ Hibernate: select mrll1_0.id,mrll1_0.coefficient,mrll1_0.medical_risk_limit_leve
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select ac1_0.id,ac1_0.age_from,ac1_0.age_to,ac1_0.coefficient from age_coefficient ac1_0 where ac1_0.age_from&lt;=? and ac1_0.age_to&gt;=?
 Hibernate: select mrll1_0.id,mrll1_0.coefficient,mrll1_0.medical_risk_limit_level_ic from medical_risk_limit_level mrll1_0 where mrll1_0.medical_risk_limit_level_ic=?
-02:59:32.997 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 9
+17:06:40.458 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 10
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -183,7 +183,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.008 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
+17:06:40.470 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -192,7 +192,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.021 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
+17:06:40.483 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 7
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
@@ -200,16 +200,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.033 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 7
-Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.045 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 5
+17:06:40.493 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 5
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -218,11 +209,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.054 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
-Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
-Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
-02:59:33.062 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 2
+17:06:40.504 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -231,7 +218,11 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.071 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
+17:06:40.513 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
+Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
+17:06:40.521 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 2
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -240,7 +231,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.080 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
+17:06:40.532 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 5
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
@@ -249,21 +240,30 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.089 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
+17:06:40.543 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
+Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
+17:06:40.552 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.095 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 2
+17:06:40.560 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 3
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select c1_0.id,c1_0.description,c1_0.title from classifiers c1_0 where c1_0.id=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
 Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from classifier_values cv1_0 left join classifiers c1_0 on c1_0.id=cv1_0.classifier_id where c1_0.title=? and cv1_0.ic=?
-02:59:33.102 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 2
+17:06:40.569 [Test worker] ?[34mINFO ?[0;39m ?[36mo.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime?[0;39m – Request processing time (ms): 4
 </pre>
 </span>
 </div>
@@ -275,7 +275,7 @@ Hibernate: select cv1_0.id,cv1_0.classifier_id,cv1_0.description,cv1_0.ic from c
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.11.1</a> at 28 мар. 2025 г., 02:59:33</p>
+<a href="http://www.gradle.org">Gradle 8.11.1</a> at 28 мар. 2025 г., 17:06:40</p>
 </div>
 </div>
 </body>

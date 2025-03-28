@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.038">
+<testsuite name="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:38" hostname="Nikita.lan" time="0.035">
   <properties/>
-  <testcase name="[1] level=LEVEL_10000, coefficient=1.0" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.01"/>
+  <testcase name="[1] level=LEVEL_10000, coefficient=1.0" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.006"/>
   <testcase name="[2] level=LEVEL_15000, coefficient=1.2" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.007"/>
-  <testcase name="[3] level=LEVEL_20000, coefficient=1.5" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.003"/>
-  <testcase name="[4] level=LEVEL_50000, coefficient=2.0" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.007"/>
-  <testcase name="shouldNotFind_RiskType_FAKE()" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.004"/>
+  <testcase name="[3] level=LEVEL_20000, coefficient=1.5" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.005"/>
+  <testcase name="[4] level=LEVEL_50000, coefficient=2.0" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.006"/>
+  <testcase name="shouldNotFind_RiskType_FAKE()" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.005"/>
   <testcase name="injectedRepositoryAreNotNull()" classname="org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest" time="0.002"/>
-  <system-out><![CDATA[02:59:31.130 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest]: MedicalRiskLimitLevelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-02:59:31.134 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest
+  <system-out><![CDATA[17:06:38.582 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest]: MedicalRiskLimitLevelRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:06:38.587 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepositoryTest
 Hibernate: select mrll1_0.id,mrll1_0.coefficient,mrll1_0.medical_risk_limit_level_ic from medical_risk_limit_level mrll1_0 where mrll1_0.medical_risk_limit_level_ic=?
 Hibernate: select mrll1_0.id,mrll1_0.coefficient,mrll1_0.medical_risk_limit_level_ic from medical_risk_limit_level mrll1_0 where mrll1_0.medical_risk_limit_level_ic=?
 Hibernate: select mrll1_0.id,mrll1_0.coefficient,mrll1_0.medical_risk_limit_level_ic from medical_risk_limit_level mrll1_0 where mrll1_0.medical_risk_limit_level_ic=?

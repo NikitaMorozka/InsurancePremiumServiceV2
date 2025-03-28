@@ -251,3 +251,6 @@ org.javaguru.travel.insurance.rest.v1.TravelCalculatePremiumControllerV1#calcula
 2025-03-28 02:52:23,364 [http-nio-8080-exec-7] INFO  o.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime - Request processing time (ms): 18
 2025-03-28 02:52:57,774 [http-nio-8080-exec-8] INFO  o.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime - Request processing time (ms): 12
 2025-03-28 02:53:36,496 [http-nio-8080-exec-10] INFO  o.j.t.i.r.l.EventLoggerTravelCalculatePremiumRequestExecutionTime - Request processing time (ms): 11
+2025-03-28 03:18:42,672 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-28 03:18:42,709 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-28 03:18:42,848 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

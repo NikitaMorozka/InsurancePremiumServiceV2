@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.024">
+<testsuite name="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:38" hostname="Nikita.lan" time="0.032">
   <properties/>
-  <testcase name="shouldNotFindForUnknownCountry()" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.005"/>
-  <testcase name="[1] countryIc=LATVIA, dayRate=1.00" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.004"/>
-  <testcase name="[2] countryIc=SPAIN, dayRate=2.50" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.005"/>
+  <testcase name="shouldNotFindForUnknownCountry()" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.009"/>
+  <testcase name="[1] countryIc=LATVIA, dayRate=1.00" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.006"/>
+  <testcase name="[2] countryIc=SPAIN, dayRate=2.50" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.006"/>
   <testcase name="[3] countryIc=JAPAN, dayRate=3.50" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.005"/>
   <testcase name="injectedRepositoryAreNotNull()" classname="org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest" time="0.003"/>
-  <system-out><![CDATA[02:59:31.098 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest]: CountryDefaultDayRateRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-02:59:31.103 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest
+  <system-out><![CDATA[17:06:38.534 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.t.c.s.AnnotationConfigContextLoaderUtils?[0;39m – Could not detect default configuration classes for test class [org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest]: CountryDefaultDayRateRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:06:38.546 [Test worker] ?[34mINFO ?[0;39m ?[36mo.s.b.t.c.SpringBootTestContextBootstrapper?[0;39m – Found @SpringBootConfiguration org.javaguru.travel.insurance.InsuranceApplication for test class org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepositoryTest
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?
 Hibernate: select cddr1_0.id,cddr1_0.country_ic,cddr1_0.default_day_rate from country_default_day_rate cddr1_0 where cddr1_0.country_ic=?

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.038">
+<testsuite name="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:39" hostname="Nikita.lan" time="0.042">
   <properties/>
-  <testcase name="Тест: 4 ошибки валидации (2 ошибки по PersonDTO + 2 ошибки по AgreementDTO)" classname="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" time="0.036"/>
-  <testcase name="Тест: Если список валидаторов пуст, ошибок не должно быть" classname="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" time="0.001"/>
+  <testcase name="Тест: 4 ошибки валидации (2 ошибки по PersonDTO + 2 ошибки по AgreementDTO)" classname="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" time="0.04"/>
+  <testcase name="Тест: Если список валидаторов пуст, ошибок не должно быть" classname="org.javaguru.travel.insurance.core.validations.TravelAgreementValidatorImplTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-03-27T22:59:31" hostname="Nikita.lan" time="0.007">
+<testsuite name="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:39" hostname="Nikita.lan" time="0.007">
   <properties/>
-  <testcase name="Тест: в список рисков переданы значения" classname="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" time="0.002"/>
+  <testcase name="Тест: в список рисков переданы значения" classname="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" time="0.003"/>
   <testcase name="Тест: список рисков имеет пустое значение" classname="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" time="0.001"/>
   <testcase name="Тест: список рисков пуст" classname="org.javaguru.travel.insurance.core.validations.agreement.EmptyRiskDTOValidatorTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
