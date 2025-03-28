@@ -39,7 +39,7 @@ class TravelMedicalRiskPremiumCalculatorTest {
         when(dayCountCalculating.calculateDayCount(request)).thenReturn(new BigDecimal(2));
         when(countryDefaultDayRateCalculating.findCountryDefaultDayRate(request)).thenReturn(BigDecimal.TEN);
         when(ageCoefficientCalculating.findAgeCoefficient(requestPerson)).thenReturn(new BigDecimal(1.2));
-        when(medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(request)).thenReturn(new BigDecimal(1.2));
+        when(medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(requestPerson)).thenReturn(new BigDecimal(1.2));
         BigDecimal premium = calculator.calculatePremium(request, requestPerson);
         assertEquals(new BigDecimal("28.80"), premium);
     }

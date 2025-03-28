@@ -5,6 +5,10 @@
       "description": "MedicalRiskLimitLevel not in database!"
     },
     {
+      "errorCode": "ERROR_CODE_14",
+      "description": "MedicalRiskLimitLevel not in database!"
+    },
+    {
       "errorCode": "ERROR_CODE_13",
       "description": "MedicalRiskLimitLevel value not supported!"
     }
@@ -12,7 +16,6 @@
   "agreementDateFrom": null,
   "agreementDateTo": null,
   "country": null,
-  "medicalRiskLimitLevel": null,
   "agreementPremium": null,
   "persons": null
 }

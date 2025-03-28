@@ -7,16 +7,16 @@
   "persons":[
     {  "personFirstName": "John",
       "personLastName": "Doe",
-      "dateOfBirth": "2002-01-23"
+      "dateOfBirth": "2002-01-23",
+      "medicalRiskLimitLevel": "LEVEL_15000"
+
     },
 
     {  "personFirstName": "Никита",
       "personLastName": "Морозов",
-      "dateOfBirth": "2004-01-23"
-    },
-    {  "personFirstName": "Артем",
-      "personLastName": "Емельяненко",
-      "dateOfBirth": "2004-01-23"
+      "dateOfBirth": "2004-01-23",
+      "medicalRiskLimitLevel": "LEVEL_10000"
+
     }
   ]
 }

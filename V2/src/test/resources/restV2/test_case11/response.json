@@ -3,16 +3,11 @@
     {
       "errorCode": "ERROR_CODE_11",
       "description": "Date of birth must not be null!"
-    },
-    {
-      "errorCode": "ERROR_CODE_11",
-      "description": "Date of birth must not be null!"
     }
   ],
   "agreementDateFrom": null,
   "agreementDateTo": null,
   "country": null,
-  "medicalRiskLimitLevel": null,
   "agreementPremium": null,
   "persons": null
 }

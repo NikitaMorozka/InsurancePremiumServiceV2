@@ -3,26 +3,18 @@
   "agreementDateFrom": "2028-01-23",
   "agreementDateTo": "2028-04-23",
   "country": "JAPAN",
-  "medicalRiskLimitLevel": "LEVEL_15000",
-  "agreementPremium": 1261.26,
+  "agreementPremium": 770.77,
   "persons": [
     {
       "personFirstName": "John",
       "personLastName": "Doe",
       "dateOfBirthDate": "2002-01-23",
       "personAgreementPremium": 420.42,
+      "medicalRiskLimitLevel": "LEVEL_15000",
       "risks": [
         {
           "riskIc": "TRAVEL_MEDICAL",
           "premium": 420.42
-        },
-        {
-          "riskIc": "TRAVEL_CANCELLATION",
-          "premium": 0.00
-        },
-        {
-          "riskIc": "TRAVEL_LOSS_BAGGAGE",
-          "premium": 0.00
         }
       ]
     },
@@ -30,39 +22,12 @@
       "personFirstName": "Никита",
       "personLastName": "Морозов",
       "dateOfBirthDate": "2004-01-23",
-      "personAgreementPremium": 420.42,
+      "personAgreementPremium": 350.35,
+      "medicalRiskLimitLevel": "LEVEL_10000",
       "risks": [
         {
           "riskIc": "TRAVEL_MEDICAL",
-          "premium": 420.42
-        },
-        {
-          "riskIc": "TRAVEL_CANCELLATION",
-          "premium": 0.00
-        },
-        {
-          "riskIc": "TRAVEL_LOSS_BAGGAGE",
-          "premium": 0.00
-        }
-      ]
-    },
-    {
-      "personFirstName": "Артем",
-      "personLastName": "Емельяненко",
-      "dateOfBirthDate": "2004-01-23",
-      "personAgreementPremium": 420.42,
-      "risks": [
-        {
-          "riskIc": "TRAVEL_MEDICAL",
-          "premium": 420.42
-        },
-        {
-          "riskIc": "TRAVEL_CANCELLATION",
-          "premium": 0.00
-        },
-        {
-          "riskIc": "TRAVEL_LOSS_BAGGAGE",
-          "premium": 0.00
+          "premium": 350.35
         }
       ]
     }

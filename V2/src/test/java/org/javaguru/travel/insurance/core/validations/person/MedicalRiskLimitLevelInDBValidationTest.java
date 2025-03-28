@@ -1,11 +1,10 @@
-package org.javaguru.travel.insurance.core.validations.agreement;
+package org.javaguru.travel.insurance.core.validations.person;
 
-import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.domain.ClassifierValue;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
-import org.javaguru.travel.insurance.core.validations.person.MedicalRiskLimitLevelInDBValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class MedicalRiskLimitLevelInDBValidationTest {
-    @Mock AgreementDTO request;
+    @Mock PersonDTO request;
     @Mock ClassifierValueRepository classifierValueRepository;
     @Mock ErrorValidationFactory errorsHandler;
 

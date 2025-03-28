@@ -1,6 +1,6 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
-import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.domain.MedicalRiskLimitLevel;
 import org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepository;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,7 @@ import static org.mockito.Mockito.when;
 class MedicalRiskLimitLevelCalculatingTest {
 
     @Mock MedicalRiskLimitLevelRepository medicalRiskLimitLevelRepository;
-    @Mock
-    AgreementDTO request;
+    @Mock PersonDTO request;
 
     @InjectMocks
     MedicalRiskLimitLevelCalculating medicalRiskLimitLevelCalculating;
