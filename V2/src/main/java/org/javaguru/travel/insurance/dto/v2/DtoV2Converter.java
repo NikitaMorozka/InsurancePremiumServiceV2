@@ -11,14 +11,11 @@ import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.services.TravelCalculatePremiumService;
 import org.javaguru.travel.insurance.dto.Risks;
 import org.javaguru.travel.insurance.dto.ValidationError;
-import org.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
-import org.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumResponseV1;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
@@ -59,7 +56,6 @@ public class DtoV2Converter { // написать тесты
         response.setAgreementDateFrom(agreement.getAgreementDateFrom());
         response.setAgreementDateTo(agreement.getAgreementDateTo());
         response.setCountry(agreement.getCountry());
-        response.setMedicalRiskLimitLevel(agreement.getMedicalRiskLimitLevel());
         response.setAgreementPremium(agreement.getAgreementPremium());
         response.setPersons(agreement.getPersons().stream().map(this::buildPersonFromResponse).toList());
         return response;
@@ -71,7 +67,7 @@ public class DtoV2Converter { // написать тесты
         person.setPersonFirstName(personDTO.getPersonFirstName());
         person.setPersonLastName(personDTO.getPersonLastName());
         person.setDateOfBirthDate(personDTO.getPersonBirthDate());
-
+        person.setMedicalRiskLimitLevel(personDTO.getMedicalRiskLimitLevel());
         person.setPersonAgreementPremium(personDTO.getRisks().stream()
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -85,14 +81,11 @@ public class DtoV2Converter { // написать тесты
     }
 
 
-
-
     private AgreementDTO buildAgreement(TravelCalculatePremiumRequestV2 request) {
         AgreementDTO agreement = new AgreementDTO();
         agreement.setAgreementDateFrom(request.getAgreementDateFrom());
         agreement.setAgreementDateTo(request.getAgreementDateTo());
         agreement.setCountry(request.getCountry());
-        agreement.setMedicalRiskLimitLevel(request.getMedicalRiskLimitLevel());
         agreement.setSelectedRisks(request.getSelectedRisks());
         agreement.setPersons(buildPersons(request));
         return agreement;
@@ -104,6 +97,7 @@ public class DtoV2Converter { // написать тесты
             person.setPersonFirstName(persons.getPersonFirstName());
             person.setPersonLastName(persons.getPersonLastName());
             person.setPersonBirthDate(persons.getDateOfBirth());
+            person.setMedicalRiskLimitLevel(persons.getMedicalRiskLimitLevel());
             personsDTO.add(person);
         }
         return personsDTO;

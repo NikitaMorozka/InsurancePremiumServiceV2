@@ -23,7 +23,7 @@ class TravelMedicalCalculatePremiumService implements TravelRiskPremiumCalculato
         return dayCountCalculating.calculateDayCount(request)
                 .multiply(dayRate.findCountryDefaultDayRate(request))
                 .multiply(ageCoefficientCalculating.findAgeCoefficient(requestPerson))
-                .multiply(medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(request))
+                .multiply(medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(requestPerson))
                 .setScale(2, RoundingMode.HALF_UP);
     }
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.validations.agreement.DateToValidatorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:39" hostname="Nikita.lan" time="0.003">
-  <properties/>
-  <testcase name="Тест: правильно заполненные поля" classname="org.javaguru.travel.insurance.core.validations.agreement.DateToValidatorTest" time="0.002"/>
-  <testcase name="Тест: поле DateTo не должно быть null" classname="org.javaguru.travel.insurance.core.validations.agreement.DateToValidatorTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

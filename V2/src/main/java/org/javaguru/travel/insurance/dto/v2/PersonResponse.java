@@ -32,5 +32,7 @@ public class PersonResponse {
     @JsonSerialize(using = BigDecimalSerializer.class)
     private BigDecimal personAgreementPremium;
 
+    private String medicalRiskLimitLevel;
+
     @JsonAlias("person_risks") private List<Risks> risks;
 }

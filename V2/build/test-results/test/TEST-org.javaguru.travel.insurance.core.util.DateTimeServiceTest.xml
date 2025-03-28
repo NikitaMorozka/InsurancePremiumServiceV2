@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.javaguru.travel.insurance.core.util.DateTimeServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-03-28T13:06:39" hostname="Nikita.lan" time="0.006">
-  <properties/>
-  <testcase name="Тест: проверка на вывод нуля" classname="org.javaguru.travel.insurance.core.util.DateTimeServiceTest" time="0.004"/>
-  <testcase name="Тест: проверка на вывод положительного числа" classname="org.javaguru.travel.insurance.core.util.DateTimeServiceTest" time="0.001"/>
-  <testcase name="Тест: проверка на вывод отрицательного числа" classname="org.javaguru.travel.insurance.core.util.DateTimeServiceTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

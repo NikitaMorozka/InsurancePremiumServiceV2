@@ -3,12 +3,14 @@ package org.javaguru.travel.insurance.core.validations.agreement;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
+import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -20,10 +22,12 @@ class MedicalRiskLimitLevelValidation implements ValidationAgreementOptional {
     private final ClassifierValueRepository classifierValueRepository;
     private final ErrorValidationFactory errorsHandler;
 
+
     @Override
     public Optional<ValidationErrorDTO> validationOptional(AgreementDTO request) {
-        return (medicalRiskLimitLevelEnabled && containsTravelMedical(request) && isMedicalRiskLimitLevelNotBlank(request))
-                && !existInDatabase(request.getMedicalRiskLimitLevel())
+        return (medicalRiskLimitLevelEnabled
+                && containsTravelMedical(request)
+                && !existInDatabase(request.getPersons()))
                 ? Optional.of(errorsHandler.processing("ERROR_CODE_13"))
                 : Optional.empty();
     }
@@ -33,13 +37,12 @@ class MedicalRiskLimitLevelValidation implements ValidationAgreementOptional {
                 && request.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
-    private boolean isMedicalRiskLimitLevelNotBlank(AgreementDTO request) {
-        return request.getMedicalRiskLimitLevel() != null
-                && !request.getMedicalRiskLimitLevel().isBlank();
-    }
 
-    private boolean existInDatabase(String medicalRiscLimitLevelIc) {
-        return classifierValueRepository
-                .findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", medicalRiscLimitLevelIc).isPresent();
+    private boolean existInDatabase(List<PersonDTO> personDTO) {
+        return personDTO.stream()
+                .allMatch(person -> classifierValueRepository
+                        .findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", person.getMedicalRiskLimitLevel())
+                        .isPresent());
+
     }
 }
