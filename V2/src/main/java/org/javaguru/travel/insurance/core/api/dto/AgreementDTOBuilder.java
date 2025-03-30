@@ -55,6 +55,11 @@ public class AgreementDTOBuilder {
         return this;
     }
 
+    public AgreementDTOBuilder withSelectedRisk(List<String> selectedRisks) {
+        this.selectedRisks.addAll(selectedRisks);
+        return this;
+    }
+
     public AgreementDTOBuilder withPerson(PersonDTO person) {
         this.persons.add(person);
         return this;

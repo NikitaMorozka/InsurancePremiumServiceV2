@@ -13,7 +13,6 @@ import java.util.Collection;
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class CalculateTotalPremiumAgreement {
-
     BigDecimal calculateTotalAgreementPremium(AgreementDTO agreement) {
         return agreement.getPersons().stream()
                 .map(PersonDTO::getRisks)
@@ -21,5 +20,4 @@ class CalculateTotalPremiumAgreement {
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
 }
