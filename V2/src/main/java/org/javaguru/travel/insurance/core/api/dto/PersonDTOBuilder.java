@@ -8,6 +8,7 @@ public class PersonDTOBuilder {
 
     private String personFirstName;
     private String personLastName;
+    private String personCode;
     private LocalDate personBirthDate;
     private String medicalRiskLimitLevel;
     private List<RiskDTO> risks = new ArrayList<>();
@@ -20,6 +21,7 @@ public class PersonDTOBuilder {
         PersonDTO personDTO = new PersonDTO();
         personDTO.setPersonFirstName(personFirstName);
         personDTO.setPersonLastName(personLastName);
+        personDTO.setPersonCode(personCode);
         personDTO.setPersonBirthDate(personBirthDate);
         personDTO.setRisks(risks);
         personDTO.setMedicalRiskLimitLevel(medicalRiskLimitLevel);
@@ -35,6 +37,12 @@ public class PersonDTOBuilder {
         this.personLastName = personLastName;
         return this;
     }
+
+    public PersonDTOBuilder withPersonCode(String personCode){
+        this.personCode = personCode;
+        return this;
+    }
+
 
     public PersonDTOBuilder withPersonBirthDate( LocalDate personBirthDate){
         this.personBirthDate = personBirthDate;

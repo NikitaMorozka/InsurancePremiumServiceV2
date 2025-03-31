@@ -2,9 +2,6 @@ package org.javaguru.travel.insurance.web.v1;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.javaguru.travel.insurance.core.api.command.TravelCalculatePremiumCoreCommand;
-import org.javaguru.travel.insurance.core.api.command.TravelCalculatePremiumCoreResult;
-import org.javaguru.travel.insurance.core.services.TravelCalculatePremiumService;
 import org.javaguru.travel.insurance.dto.v1.DtoV1Converter;
 import org.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumRequestV1;
 import org.javaguru.travel.insurance.dto.v1.TravelCalculatePremiumResponseV1;
@@ -25,7 +22,7 @@ public class TravelInsuranceControllerV1 {
     public String showForm(ModelMap modelMap) {
         modelMap.addAttribute("request", new TravelCalculatePremiumRequestV1());
         modelMap.addAttribute("response", new TravelCalculatePremiumResponseV1());
-        return "travel-calculate-premium";
+        return "travel-calculate-premiumV1";
     }
 
     @PostMapping("/insurance/travel/web/v1")
@@ -33,6 +30,6 @@ public class TravelInsuranceControllerV1 {
                               ModelMap modelMap) {
         TravelCalculatePremiumResponseV1 response = dtoV1Converter.processRequest(request);
         modelMap.addAttribute("response", response);
-        return "travel-calculate-premium";
+        return "travel-calculate-premiumV1";
     }
 }

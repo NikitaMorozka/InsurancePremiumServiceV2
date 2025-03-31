@@ -21,7 +21,7 @@ class AgeCoefficientCalculating {
 
     private final AgeCoefficientRepository ageCoefficient;
 
-    BigDecimal findAgeCoefficient(PersonDTO request) {
+    public BigDecimal findAgeCoefficient(PersonDTO request) {
         return medicalRiskAgeCoefficientEnabled
                 ? getCoefficient(request)
                 : getDefaultValue();

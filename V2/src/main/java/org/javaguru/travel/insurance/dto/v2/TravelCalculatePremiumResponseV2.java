@@ -24,7 +24,7 @@ public class TravelCalculatePremiumResponseV2 extends CoreResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") private LocalDate agreementDateFrom;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") private LocalDate agreementDateTo;
     private String country;
-//    private String medicalRiskLimitLevel;
+
     @JsonSerialize(using = BigDecimalSerializer.class) private BigDecimal agreementPremium;
 
     @JsonAlias("persons") private List<PersonResponse> persons;

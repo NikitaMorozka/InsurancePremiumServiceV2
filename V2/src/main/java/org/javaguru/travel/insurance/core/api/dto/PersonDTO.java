@@ -18,6 +18,8 @@ public class PersonDTO {
 
     private String personLastName;
 
+    private String personCode;
+
     private LocalDate personBirthDate;
 
     private String medicalRiskLimitLevel;

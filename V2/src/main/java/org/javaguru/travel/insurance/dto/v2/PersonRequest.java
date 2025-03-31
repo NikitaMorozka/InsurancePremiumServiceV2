@@ -19,8 +19,8 @@ import java.util.List;
 public class PersonRequest {
 
     private String personFirstName;
-
     private String personLastName;
+    private String personCode;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

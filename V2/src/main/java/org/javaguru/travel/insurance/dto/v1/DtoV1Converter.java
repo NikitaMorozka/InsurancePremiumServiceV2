@@ -50,6 +50,7 @@ public class DtoV1Converter { //написать тесты
         TravelCalculatePremiumResponseV1 response = new TravelCalculatePremiumResponseV1();
         response.setPersonFirstName(agreement.getPersons().getFirst().getPersonFirstName());
         response.setPersonLastName(agreement.getPersons().getFirst().getPersonLastName());
+        response.setPersonCode(agreement.getPersons().getFirst().getPersonCode());
         response.setDateOfBirth(agreement.getPersons().getFirst().getPersonBirthDate());
         response.setAgreementDateFrom(agreement.getAgreementDateFrom());
         response.setAgreementDateTo(agreement.getAgreementDateTo());
@@ -69,6 +70,7 @@ public class DtoV1Converter { //написать тесты
         PersonDTO person = new PersonDTO();
         person.setPersonFirstName(request.getPersonFirstName());
         person.setPersonLastName(request.getPersonLastName());
+        person.setPersonCode(request.getPersonCode());
         person.setPersonBirthDate(request.getDateOfBirth());
         person.setMedicalRiskLimitLevel(request.getMedicalRiskLimitLevel());
         return person;

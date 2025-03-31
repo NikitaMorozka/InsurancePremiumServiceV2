@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Insurance Premium Calculation</title>
+    <script>
+        function addPerson() {
+            const personsContainer = document.getElementById("personsContainer");
+
+            const personIndex = personsContainer.children.length;
+
+            const personDiv = document.createElement("div");
+            personDiv.className = "person-block";
+
+            personDiv.innerHTML = `
+                <h3>Person ${personIndex + 1}</h3>
+
+                <label for="personFirstName${personIndex}">First Name:</label>
+                <input type="text" id="personFirstName${personIndex}" name="persons[${personIndex}].personFirstName"><br><br>
+
+                <label for="personLastName${personIndex}">Last Name:</label>
+                <input type="text" id="personLastName${personIndex}" name="persons[${personIndex}].personLastName"><br><br>
+
+                <label for="personCode${personIndex}">Person Code:</label>
+                <input type="text" id="personCode${personIndex}" name="persons[${personIndex}].personCode"><br><br>
+
+                <label for="dateOfBirth${personIndex}">Birth Date:</label>
+                <input type="date" id="dateOfBirth${personIndex}" name="persons[${personIndex}].dateOfBirth"><br><br>
+
+                <label for="medicalRiskLimitLevel${personIndex}">Medical Risk Limit Level:</label>
+                <input type="text" id="medicalRiskLimitLevel${personIndex}" name="persons[${personIndex}].medicalRiskLimitLevel"><br><br>
+            `;
+            personsContainer.appendChild(personDiv);
+        }
+    </script>
+</head>
+<body>
+
+<h1>Travel Insurance Premium Calculation</h1>
+
+<form action="/insurance/travel/web/v2" th:object="${request}" method="post">
+
+    <label for="agreementDateFrom">Agreement Date From:</label>
+    <input type="date" id="agreementDateFrom" th:field="*{agreementDateFrom}"><br><br>
+
+    <label for="agreementDateTo">Agreement Date To:</label>
+    <input type="date" id="agreementDateTo" th:field="*{agreementDateTo}"><br><br>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" th:field="*{country}"><br><br>
+
+    <label for="selectedRisks">Selected Risks (comma-separated):</label>
+    <input type="text" id="selectedRisks" th:field="*{selectedRisks}"><br><br>
+
+    <h2>Persons</h2>
+    <div id="personsContainer"></div>
+
+    <button type="button" onclick="addPerson()">Add Person</button>
+    <br><br>
+    <button type="submit">Calculate Premium</button>
+</form>
+
+<!-- Display errors if there are any -->
+<div th:if="${response.errors != null}">
+    <h3>Travel Insurance Premium Calculation ERRORS</h3>
+    <table>
+        <tr th:each="error : ${response.errors}">
+            <td th:text="${error.errorCode}"></td>
+            <td th:text="${error.description}"></td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<!-- Display the total agreement premium -->
+<h3>
+    <label th:if="${response.agreementPremium != null}"
+           th:text="'AGREEMENT PREMIUM: ' + ${response.agreementPremium}"></label>
+</h3>
+<br>
+
+<!-- Display individual premiums and risks for each person -->
+<div th:if="${response.persons != null}">
+    <h3>Individual Premiums and Risks:</h3>
+    <div th:each="person, stat : ${response.persons}">
+        <h4 th:text="'Person ' + (${stat.index} + 1) + ': ' + ${person.personFirstName} + ' ' + ${person.personLastName}"></h4>
+        <p th:text="'Premium: ' + ${person.personAgreementPremium}"></p>
+
+        <ul>
+            <li th:each="risk : ${person.risks}">
+                <span th:text="'Risk: ' + ${risk.riskIc} + ', Premium: ' + ${risk.premium}"></span>
+            </li>
+        </ul>
+        <br>
+    </div>
+</div>
+
+
+</body>
+</html>

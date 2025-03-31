@@ -66,6 +66,7 @@ public class DtoV2Converter { // написать тесты
 
         person.setPersonFirstName(personDTO.getPersonFirstName());
         person.setPersonLastName(personDTO.getPersonLastName());
+        person.setPersonCode(personDTO.getPersonCode());
         person.setDateOfBirthDate(personDTO.getPersonBirthDate());
         person.setMedicalRiskLimitLevel(personDTO.getMedicalRiskLimitLevel());
         person.setPersonAgreementPremium(personDTO.getRisks().stream()
@@ -96,6 +97,7 @@ public class DtoV2Converter { // написать тесты
             PersonDTO person = new PersonDTO();
             person.setPersonFirstName(persons.getPersonFirstName());
             person.setPersonLastName(persons.getPersonLastName());
+            person.setPersonCode(persons.getPersonCode());
             person.setPersonBirthDate(persons.getDateOfBirth());
             person.setMedicalRiskLimitLevel(persons.getMedicalRiskLimitLevel());
             personsDTO.add(person);

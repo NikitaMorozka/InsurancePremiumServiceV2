@@ -13,9 +13,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,23 +39,25 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
 
     @Test
     void shouldReturnErrorWhenMedicalRiskLimitLevelNotExistInDb() {
-
-        when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_20000"))
-                .thenReturn(Optional.empty());
-
-
-        ValidationErrorDTO validationErrorDTO = new ValidationErrorDTO("ERROR_CODE_14", "Medical risk limit level not found");
-        when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
-
+        RiskDTO riskDTO = RiskDTOBuilder
+                .createRiskDTO()
+                .withRiskIc("MEDICAL_RISK_LIMIT_LEVEL")
+                .withPremium(new BigDecimal("1.1"))
+                .build();
 
         PersonDTO person = PersonDTOBuilder
                 .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withRisks(null)
+                .withPersonBirthDate(createDate())
+                .withRisks(List.of(riskDTO))
                 .withMedicalRiskLimitLevel("LEVEL_20000")
                 .build();
+
+
+        when(classifierValueRepository.findByClassifierTitleAndIc(riskDTO.getRiskIc(), person.getMedicalRiskLimitLevel()))
+                .thenReturn(Optional.empty());
+
+        ValidationErrorDTO validationErrorDTO = new ValidationErrorDTO("ERROR_CODE_14", "Medical risk limit level not found");
+        when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
 
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(person);
 
@@ -66,9 +71,7 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
     void shouldReturnErrorWhenMedicalRiskLimitLevelIsBlank() {
         PersonDTO person = PersonDTOBuilder
                 .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonBirthDate(createDate("25.11.2002"))
+                .withPersonBirthDate(createDate())
                 .withRisks(null)
                 .withMedicalRiskLimitLevel("   ")
                 .build();
@@ -81,28 +84,31 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
 
     @Test
     void shouldNotReturnErrorWhenMedicalRiskLimitLevelExistInDb() {
+        RiskDTO riskDTO = RiskDTOBuilder
+                .createRiskDTO()
+                .withRiskIc("MEDICAL_RISK_LIMIT_LEVEL")
+                .withPremium(new BigDecimal("1.1"))
+                .build();
+
         PersonDTO person = PersonDTOBuilder
                 .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withRisks(null)
+                .withPersonBirthDate(createDate())
+                .withRisks(List.of(riskDTO))
                 .withMedicalRiskLimitLevel("LEVEL_15000")
                 .build();
-        when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_15000"))
-                .thenReturn(Optional.empty());
-        when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", person.getMedicalRiskLimitLevel())).thenReturn(Optional.of(new ClassifierValue()));
+
+        when(classifierValueRepository.findByClassifierTitleAndIc(riskDTO.getRiskIc(), person.getMedicalRiskLimitLevel())).thenReturn(Optional.of(new ClassifierValue()));
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(person);
         assertTrue(validationErrorOpt.isEmpty());
     }
 
-    private LocalDate createDate(String dateStr) {
+    private LocalDate createDate() {
         LocalDate date;
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            date =  LocalDate.parse(dateStr, formatter);
+            date =  LocalDate.parse("25.11.2002", formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Некорректный формат даты: " + dateStr, e);
+            throw new IllegalArgumentException("Некорректный формат даты: " + "25.11.2002", e);
         }
         return date;
     }

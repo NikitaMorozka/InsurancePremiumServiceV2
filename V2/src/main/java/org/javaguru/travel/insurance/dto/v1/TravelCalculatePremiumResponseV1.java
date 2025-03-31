@@ -22,6 +22,8 @@ import java.util.List;
 public class TravelCalculatePremiumResponseV1 extends CoreResponse {
     private String personFirstName;
     private String personLastName;
+    private String personCode;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") private LocalDate dateOfBirth;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") private LocalDate agreementDateFrom;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") private LocalDate agreementDateTo;
