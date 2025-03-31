@@ -32,6 +32,7 @@ class AgreementDateFromValidationIntegrationTest {
                 .createPerson()
                 .withPersonFirstName("Никита")
                 .withPersonLastName("Морозов")
+                .withPersonCode("12341")
                 .withPersonBirthDate(createDate("25.11.2002"))
                 .withMedicalRiskLimitLevel("LEVEL_20000")
                 .build();
@@ -57,6 +58,7 @@ class AgreementDateFromValidationIntegrationTest {
                 .createPerson()
                 .withPersonFirstName("Никита")
                 .withPersonLastName("Морозов")
+                .withPersonCode("12341")
                 .withPersonBirthDate(createDate("25.11.2002"))
                 .withMedicalRiskLimitLevel("LEVEL_20000")
                 .build();

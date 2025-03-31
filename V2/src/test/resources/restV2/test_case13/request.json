@@ -2,13 +2,12 @@
   "agreementDateFrom": "2028-01-23",
   "agreementDateTo": "2028-04-23",
   "country": "JAPAN",
-  "medicalRiskLimitLevel": "LEVEL_15000",
-  "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION", "TRAVEL_LOSS_BAGGAGE"],
+  "selected_risks":["TRAVEL_MEDICAL"],
   "persons":[
-    {  "personFirstName": "",
-      "personLastName": "",
+    {  "personFirstName": "John",
+      "personLastName": "Doe",
       "dateOfBirth": "2002-01-23",
-      "personCode":"1",
+      "personCode":"2",
       "medicalRiskLimitLevel": "LEVEL_15000"
 
     },

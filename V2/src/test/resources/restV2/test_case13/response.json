@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "errorCode": "ERROR_CODE_16",
+      "description": "PersonCode must not be unique!"
+    }
+  ],
+  "agreementDateFrom": null,
+  "agreementDateTo": null,
+  "country": null,
+  "agreementPremium": null,
+  "persons": null
+}

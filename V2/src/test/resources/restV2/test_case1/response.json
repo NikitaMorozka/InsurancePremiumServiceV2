@@ -8,6 +8,7 @@
     {
       "personFirstName": "John",
       "personLastName": "Doe",
+      "personCode": "1",
       "dateOfBirthDate": "2002-01-23",
       "personAgreementPremium": 420.42,
       "medicalRiskLimitLevel": "LEVEL_15000",
@@ -21,6 +22,7 @@
     {
       "personFirstName": "Никита",
       "personLastName": "Морозов",
+      "personCode": "2",
       "dateOfBirthDate": "2004-01-23",
       "personAgreementPremium": 350.35,
       "medicalRiskLimitLevel": "LEVEL_10000",

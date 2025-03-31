@@ -8,6 +8,7 @@
     {  "personFirstName": "John",
       "personLastName": "Doe",
       "dateOfBirth": "",
+      "personCode":"1",
       "medicalRiskLimitLevel": "LEVEL_15000"
 
     },
@@ -15,6 +16,7 @@
     {  "personFirstName": "Никита",
       "personLastName": "Морозов",
       "dateOfBirth": "2004-01-23",
+      "personCode":"2",
       "medicalRiskLimitLevel": "LEVEL_10000"
 
     }
