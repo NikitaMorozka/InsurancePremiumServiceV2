@@ -9,7 +9,6 @@ import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.validations.TravelAgreementValidator;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -23,22 +22,28 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
 
     private final CalculateTotalPremiumAgreement totalPremiumAgreement;
 
-    @Override
+    private final AgreementSaverService agreementSaverService;
+
+
     public TravelCalculatePremiumCoreResult calculatePremium(TravelCalculatePremiumCoreCommand command) {
         List<ValidationErrorDTO> errors = agreementValidator.validate(command.getAgreement());
-        return errors.isEmpty()
-                ? buildResponse(command.getAgreement())
-                : new TravelCalculatePremiumCoreResult(errors);
+        if (errors.isEmpty()) {
+            calculatePremium(command.getAgreement());
+            agreementSaverService.save(command.getAgreement());
+            return buildResponse(command.getAgreement());
+        }
+        return new TravelCalculatePremiumCoreResult(errors);
+    }
+
+    private void calculatePremium(AgreementDTO agreement) {
+        calculateRisksForPremium.calculateRiskPremiumsForAllPersons(agreement);
+        agreement.setAgreementPremium(totalPremiumAgreement.calculateTotalAgreementPremium(agreement));
     }
 
     private TravelCalculatePremiumCoreResult buildResponse(AgreementDTO agreement) {
-        calculateRisksForPremium.calculateRiskPremiumsForAllPersons(agreement);
-        BigDecimal totalPremium = totalPremiumAgreement.calculateTotalAgreementPremium(agreement);
-        agreement.setAgreementPremium(totalPremium);
-        TravelCalculatePremiumCoreResult coreResult = new TravelCalculatePremiumCoreResult();
-        coreResult.setAgreement(agreement);
-        return coreResult;
+        return new TravelCalculatePremiumCoreResult(null, agreement);
     }
 
 }
+
 
