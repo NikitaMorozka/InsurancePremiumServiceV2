@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,6 +19,8 @@ public class AgreementDTO {
     private LocalDate agreementDateFrom;
 
     private LocalDate agreementDateTo;
+
+    private UUID uuid;
 
     private String country;
 

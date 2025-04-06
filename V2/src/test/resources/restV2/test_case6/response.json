@@ -8,10 +8,5 @@
       "errorCode": "ERROR_CODE_5",
       "description": "DateTo must not be less DateFrom!"
     }
-  ],
-  "agreementDateFrom": null,
-  "agreementDateTo": null,
-  "country": null,
-  "agreementPremium": null,
-  "persons": null
+  ]
 }

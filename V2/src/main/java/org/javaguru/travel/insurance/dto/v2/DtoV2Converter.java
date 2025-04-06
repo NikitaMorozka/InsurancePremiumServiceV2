@@ -55,6 +55,7 @@ public class DtoV2Converter { // написать тесты
         TravelCalculatePremiumResponseV2 response = new TravelCalculatePremiumResponseV2();
         response.setAgreementDateFrom(agreement.getAgreementDateFrom());
         response.setAgreementDateTo(agreement.getAgreementDateTo());
+        response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
         response.setAgreementPremium(agreement.getAgreementPremium());
         response.setPersons(agreement.getPersons().stream().map(this::buildPersonFromResponse).toList());

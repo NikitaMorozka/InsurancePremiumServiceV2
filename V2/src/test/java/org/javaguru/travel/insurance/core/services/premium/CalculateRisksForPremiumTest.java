@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core.services;
+package org.javaguru.travel.insurance.core.services.premium;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
@@ -22,7 +22,8 @@ class CalculateRisksForPremiumTest {
 
     @Mock CalculatePremiumUnderwriting calculatePremium;
 
-    @InjectMocks CalculateRisksForPremium calculateRisksForPremium;
+    @InjectMocks
+    CalculateRisksForPremium calculateRisksForPremium;
 
     @Test
     void shouldCalculateRiskPremiumForAllPersons(){

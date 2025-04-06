@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AgreementDTOBuilder {
 
@@ -14,6 +15,7 @@ public class AgreementDTOBuilder {
     private List<String> selectedRisks = new ArrayList<>();
     private List<PersonDTO> persons = new ArrayList<>();
     private BigDecimal agreementPremium;
+    private UUID uuid;
 
     public static AgreementDTOBuilder createAgreement() {
         return new AgreementDTOBuilder();
@@ -23,6 +25,7 @@ public class AgreementDTOBuilder {
         AgreementDTO agreementDTO = new AgreementDTO();
         agreementDTO.setAgreementDateFrom(agreementDateFrom);
         agreementDTO.setAgreementDateTo(agreementDateTo);
+        agreementDTO.setUuid(uuid);
         agreementDTO.setCountry(country);
         agreementDTO.setSelectedRisks(selectedRisks);
         agreementDTO.setPersons(persons);
@@ -39,6 +42,12 @@ public class AgreementDTOBuilder {
         this.agreementDateTo = agreementDateTo;
         return this;
     }
+
+    public AgreementDTOBuilder withUuid(UUID uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
 
     public AgreementDTOBuilder withCountry(String country) {
         this.country = country;

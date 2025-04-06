@@ -22,10 +22,10 @@ public class TravelCalculatePremiumControllerV1 {
 
     private final List<EventLogger> loggers;
     private final DtoV1Converter dtoV1Converter;
+
     @PostMapping(path = "/",
             consumes = "application/json",
             produces = "application/json")
-
     public TravelCalculatePremiumResponseV1 calculatePremium(@RequestBody TravelCalculatePremiumRequestV1 request) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         logObject(request);

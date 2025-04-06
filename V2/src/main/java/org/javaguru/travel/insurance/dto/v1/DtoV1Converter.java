@@ -54,6 +54,7 @@ public class DtoV1Converter { //написать тесты
         response.setDateOfBirth(agreement.getPersons().getFirst().getPersonBirthDate());
         response.setAgreementDateFrom(agreement.getAgreementDateFrom());
         response.setAgreementDateTo(agreement.getAgreementDateTo());
+        response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
         response.setMedicalRiskLimitLevel(agreement.getPersons().getFirst().getMedicalRiskLimitLevel());
         response.setAgreementPremium(agreement.getAgreementPremium());
@@ -75,7 +76,6 @@ public class DtoV1Converter { //написать тесты
         person.setMedicalRiskLimitLevel(request.getMedicalRiskLimitLevel());
         return person;
     }
-
 
     private AgreementDTO buildAgreement(TravelCalculatePremiumRequestV1 request) {
         AgreementDTO agreement = new AgreementDTO();

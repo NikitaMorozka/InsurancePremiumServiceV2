@@ -1,18 +1,8 @@
 {
   "errors": [
     {
-      "errorCode": "ERROR_CODE_11",
-      "description": "Date of birth must not be null!"
+      "errorCode": "ERROR_CODE_12",
+      "description": "Date of birth must not be in the future!"
     }
-  ],
-  "personFirstName": null,
-  "personLastName": null,
-  "personCode": null,
-  "dateOfBirth": null,
-  "agreementDateFrom": null,
-  "agreementDateTo": null,
-  "country": null,
-  "medicalRiskLimitLevel": null,
-  "agreementPremium": null,
-  "risks": null
+  ]
 }

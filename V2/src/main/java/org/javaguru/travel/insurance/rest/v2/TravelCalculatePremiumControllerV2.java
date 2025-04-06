@@ -4,7 +4,6 @@ package org.javaguru.travel.insurance.rest.v2;
 import com.google.common.base.Stopwatch;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-
 import org.javaguru.travel.insurance.dto.v2.DtoV2Converter;
 import org.javaguru.travel.insurance.dto.v2.TravelCalculatePremiumRequestV2;
 import org.javaguru.travel.insurance.dto.v2.TravelCalculatePremiumResponseV2;
@@ -23,16 +22,14 @@ public class TravelCalculatePremiumControllerV2 {
 
     private final List<EventLogger> loggers;
     private final DtoV2Converter dtoV2Converter;
+
     @PostMapping(path = "/",
             consumes = "application/json",
             produces = "application/json")
-
     public TravelCalculatePremiumResponseV2 calculatePremium(@RequestBody TravelCalculatePremiumRequestV2 request) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         logObject(request);
-
         TravelCalculatePremiumResponseV2 response = dtoV2Converter.processRequest(request);
-
         logObject(response);
         logObject(stopwatch);
         return response;

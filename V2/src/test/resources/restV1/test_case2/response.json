@@ -3,20 +3,6 @@
     {
       "errorCode": "ERROR_CODE_1",
       "description": "Field personFirstName is empty!"
-    },
-    {
-      "errorCode": "ERROR_CODE_6",
-      "description": "Both DateFrom and DateTo must be in the future!"
     }
-  ],
-  "personFirstName": null,
-  "personLastName": null,
-  "personCode": null,
-  "dateOfBirth": null,
-  "agreementDateFrom": null,
-  "agreementDateTo": null,
-  "country": null,
-  "medicalRiskLimitLevel": null,
-  "agreementPremium": null,
-  "risks": null
+  ]
 }

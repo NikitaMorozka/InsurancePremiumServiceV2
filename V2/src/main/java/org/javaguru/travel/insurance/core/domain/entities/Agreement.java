@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "agreements")
@@ -21,6 +22,9 @@ public class Agreement {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "uuid", unique = true, nullable = false)
+    private UUID uuid;
 
     @Column(name = "date_from", nullable = false)
     private LocalDate dateFrom;

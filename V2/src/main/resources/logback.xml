@@ -41,11 +41,11 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <logger name="org.javaguru.travel.insurance.rest.logger.EventLoggerTravelCalculatePremiumRequest" level="INFO">
+    <logger name="org.javaguru.travel.insurance.rest.v2.EventLoggerTravelCalculatePremiumRequest" level="INFO">
         <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER" />
     </logger>
 
-    <logger name="org.javaguru.travel.insurance.rest.logger.EventLoggerTravelCalculatePremiumResponse" level="INFO">
+    <logger name="org.javaguru.travel.insurance.rest.v2.EventLoggerTravelCalculatePremiumResponse" level="INFO">
         <appender-ref ref="REQUEST_RESPONSE_FILE_APPENDER" />
     </logger>
 

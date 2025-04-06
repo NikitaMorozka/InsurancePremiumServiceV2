@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core.services;
+package org.javaguru.travel.insurance.core.services.premium;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +11,11 @@ import org.javaguru.travel.insurance.core.repositories.entities.PersonRisksRepos
 import org.javaguru.travel.insurance.core.repositories.entities.SelectRisksRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class AgreementSaverService {
+class AgreementSaverService {
 
     private final AgreementRepository agreementRepository;
     private final PersonSaverService personSaverService;
@@ -31,6 +33,7 @@ public class AgreementSaverService {
 
     private Agreement createAgreement(AgreementDTO agreementDTO) {
         Agreement agreement = new Agreement();
+        agreement.setUuid(UUID.randomUUID());
         agreement.setDateFrom(agreementDTO.getAgreementDateFrom());
         agreement.setDateTo(agreementDTO.getAgreementDateTo());
         agreement.setCountry(agreementDTO.getCountry());

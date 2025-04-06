@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core.services;
+package org.javaguru.travel.insurance.core.services.premium;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -6,6 +6,8 @@ import org.javaguru.travel.insurance.core.api.command.TravelCalculatePremiumCore
 import org.javaguru.travel.insurance.core.api.command.TravelCalculatePremiumCoreResult;
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
+import org.javaguru.travel.insurance.core.domain.entities.Agreement;
+import org.javaguru.travel.insurance.core.services.TravelCalculatePremiumService;
 import org.javaguru.travel.insurance.core.validations.TravelAgreementValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
@@ -27,7 +29,8 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         List<ValidationErrorDTO> errors = agreementValidator.validate(command.getAgreement());
         if (errors.isEmpty()) {
             calculatePremium(command.getAgreement());
-            agreementSaverService.save(command.getAgreement());
+            Agreement agreement =  agreementSaverService.save(command.getAgreement());
+            command.getAgreement().setUuid(agreement.getUuid());
             return buildResponse(command.getAgreement());
         }
         return new TravelCalculatePremiumCoreResult(errors);

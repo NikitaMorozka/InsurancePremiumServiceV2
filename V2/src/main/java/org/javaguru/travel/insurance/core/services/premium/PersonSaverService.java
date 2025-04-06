@@ -1,11 +1,10 @@
-package org.javaguru.travel.insurance.core.services;
+package org.javaguru.travel.insurance.core.services.premium;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.domain.entities.Person;
 import org.javaguru.travel.insurance.core.repositories.entities.PersonRepository;
-import org.javaguru.travel.insurance.core.repositories.entities.PersonRisksRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
