@@ -57,8 +57,8 @@ public class DtoV1Converter { //написать тесты
         response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
         response.setMedicalRiskLimitLevel(agreement.getPersons().getFirst().getMedicalRiskLimitLevel());
+        response.setTravelCost(agreement.getPersons().getFirst().getTravelCost());
         response.setAgreementPremium(agreement.getAgreementPremium());
-
         PersonDTO person = agreement.getPersons().getFirst();
         List<Risks> riskPremiums = person.getRisks().stream()
                 .map(riskDTO -> new Risks(riskDTO.getRiskIc(), riskDTO.getPremium()))
@@ -67,6 +67,17 @@ public class DtoV1Converter { //написать тесты
         return response;
     }
 
+    private AgreementDTO buildAgreement(TravelCalculatePremiumRequestV1 request) {
+        AgreementDTO agreement = new AgreementDTO();
+        agreement.setAgreementDateFrom(request.getAgreementDateFrom());
+        agreement.setAgreementDateTo(request.getAgreementDateTo());
+        agreement.setCountry(request.getCountry());
+        agreement.setSelectedRisks(request.getSelectedRisks());
+        PersonDTO person = buildPerson(request);
+        agreement.setPersons(List.of(person));
+
+        return agreement;
+    }
     private PersonDTO buildPerson(TravelCalculatePremiumRequestV1 request) {
         PersonDTO person = new PersonDTO();
         person.setPersonFirstName(request.getPersonFirstName());
@@ -74,20 +85,8 @@ public class DtoV1Converter { //написать тесты
         person.setPersonCode(request.getPersonCode());
         person.setPersonBirthDate(request.getDateOfBirth());
         person.setMedicalRiskLimitLevel(request.getMedicalRiskLimitLevel());
+        person.setTravelCost(request.getTravelCost());
         return person;
-    }
-
-    private AgreementDTO buildAgreement(TravelCalculatePremiumRequestV1 request) {
-        AgreementDTO agreement = new AgreementDTO();
-        agreement.setAgreementDateFrom(request.getAgreementDateFrom());
-        agreement.setAgreementDateTo(request.getAgreementDateTo());
-        agreement.setCountry(request.getCountry());
-        agreement.setSelectedRisks(request.getSelectedRisks());
-
-        PersonDTO person = buildPerson(request);
-        agreement.setPersons(List.of(person));
-
-        return agreement;
     }
 
 }

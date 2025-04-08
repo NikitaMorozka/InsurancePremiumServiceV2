@@ -1,8 +1,8 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.domain.AgeCoefficient;
-import org.javaguru.travel.insurance.core.repositories.AgeCoefficientRepository;
+import org.javaguru.travel.insurance.core.domain.medical.TMAgeCoefficient;
+import org.javaguru.travel.insurance.core.repositories.TMAgeCoefficientRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,28 +18,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AgeCoefficientCalculatingTest {
+class TMTMAgeCoefficientCalculatingTest {
 
-    @Mock private AgeCoefficientRepository ageCoefficientRepository;
+    @Mock private TMAgeCoefficientRepository TMAgeCoefficientRepository;
     @Mock private PersonDTO request;
-    @InjectMocks private AgeCoefficientCalculating ageCoefficientCalculating;
+    @InjectMocks private TMAgeCoefficientCalculating TMAgeCoefficientCalculating;
 
     @Test
     void shouldReturnCorrectAgeCoefficient() {
         when(request.getPersonBirthDate()).thenReturn(LocalDate.of(2003, 11,25 ));
 
-        AgeCoefficient ageCoefficient = new AgeCoefficient(
+        TMAgeCoefficient TMAgeCoefficient = new TMAgeCoefficient(
                 1L,
                 20,
                 30,
                 new BigDecimal("1.20")
         );
 
-        ReflectionTestUtils.setField(ageCoefficientCalculating, "medicalRiskAgeCoefficientEnabled", true);
+        ReflectionTestUtils.setField(TMAgeCoefficientCalculating, "medicalRiskAgeCoefficientEnabled", true);
 
-        when(ageCoefficientRepository.findByAgeCoefficient(21)).thenReturn(Optional.of(ageCoefficient));
+        when(TMAgeCoefficientRepository.findByAgeCoefficient(21)).thenReturn(Optional.of(TMAgeCoefficient));
 
-        BigDecimal result = ageCoefficientCalculating.findAgeCoefficient(request);
+        BigDecimal result = TMAgeCoefficientCalculating.findAgeCoefficient(request);
 
         assertEquals(new BigDecimal("1.20"), result);
     }

@@ -65,6 +65,11 @@ CREATE TABLE IF NOT EXISTS `medical_risk_limit_level`(
 
 CREATE UNIQUE INDEX `ix_medical_risk_limit_level` ON medical_risk_limit_level (`medical_risk_limit_level_ic`);
 
+
+
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

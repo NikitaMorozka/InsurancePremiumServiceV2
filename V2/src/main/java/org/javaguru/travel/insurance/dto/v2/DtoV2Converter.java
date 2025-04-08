@@ -70,6 +70,7 @@ public class DtoV2Converter { // написать тесты
         person.setPersonCode(personDTO.getPersonCode());
         person.setDateOfBirthDate(personDTO.getPersonBirthDate());
         person.setMedicalRiskLimitLevel(personDTO.getMedicalRiskLimitLevel());
+        person.setTravelCost(personDTO.getTravelCost());
         person.setPersonAgreementPremium(personDTO.getRisks().stream()
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -101,6 +102,7 @@ public class DtoV2Converter { // написать тесты
             person.setPersonCode(persons.getPersonCode());
             person.setPersonBirthDate(persons.getDateOfBirth());
             person.setMedicalRiskLimitLevel(persons.getMedicalRiskLimitLevel());
+            person.setTravelCost(persons.getTravelCost());
             personsDTO.add(person);
         }
         return personsDTO;

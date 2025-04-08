@@ -1,7 +1,7 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import org.javaguru.travel.insurance.core.domain.CountryDefaultDayRate;
+import org.javaguru.travel.insurance.core.domain.medical.CountryDefaultDayRate;
 import org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

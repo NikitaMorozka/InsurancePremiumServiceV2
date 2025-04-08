@@ -36,7 +36,7 @@ VALUES
     ('JAPAN', 3.50);
 
 -- Вставляем ставки для возраста
-INSERT INTO age_coefficient(age_from, age_to, coefficient)
+INSERT INTO travel_medical_age_coefficient(age_from, age_to, coefficient)
 VALUES (0, 5, 1.1),
        (6, 10, 0.7),
        (11, 17, 1.0),
@@ -61,3 +61,21 @@ VALUES('LEVEL_10000', 1.0),
       ('LEVEL_15000', 1.2),
       ('LEVEL_20000', 1.5),
       ('LEVEL_50000', 2.0);
+
+INSERT INTO travel_cost_coefficient(travel_cost_from, travel_cost_to, coefficient)
+VALUES (0, 4999.99, 10.0),
+       (5000, 9999.99, 30.0),
+       (10000, 19999.99, 100.0),
+       (20000, 1000000, 500.0);
+
+INSERT INTO travel_cancellation_age_coefficient(age_from, age_to, coefficient)
+VALUES (0, 9, 5.0),
+       (10, 17, 10.0),
+       (18, 39, 20.0),
+       (40, 64, 30.0),
+       (65, 150, 50.0);
+
+INSERT INTO travel_cancellation_country_safety_rating(country_ic, coefficient)
+VALUES ('LATVIA', 5.0),
+       ('SPAIN', 8.0),
+       ('JAPAN', 9.0);

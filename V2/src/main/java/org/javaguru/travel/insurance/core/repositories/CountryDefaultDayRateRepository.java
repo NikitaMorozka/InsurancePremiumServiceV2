@@ -1,6 +1,6 @@
 package org.javaguru.travel.insurance.core.repositories;
 
-import org.javaguru.travel.insurance.core.domain.CountryDefaultDayRate;
+import org.javaguru.travel.insurance.core.domain.medical.CountryDefaultDayRate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

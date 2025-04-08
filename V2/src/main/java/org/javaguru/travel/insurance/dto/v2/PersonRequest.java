@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.javaguru.travel.insurance.dto.Risks;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class PersonRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private String medicalRiskLimitLevel;
+    private BigDecimal travelCost;
 
     @JsonAlias("person_risks") private List<Risks> risks;
 

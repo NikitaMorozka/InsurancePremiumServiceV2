@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class PersonDTO {
     private LocalDate personBirthDate;
 
     private String medicalRiskLimitLevel;
+
+    private BigDecimal travelCost;
 
     private List<RiskDTO> risks;
 

@@ -1,6 +1,6 @@
 package org.javaguru.travel.insurance.core.repositories;
 
-import org.javaguru.travel.insurance.core.domain.AgeCoefficient;
+import org.javaguru.travel.insurance.core.domain.medical.TMAgeCoefficient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,26 +20,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-class AgeCoefficientRepositoryTest {
-    @Autowired AgeCoefficientRepository ageCoefficientRepository;
+class TMAgeCoefficientRepositoryTest {
+    @Autowired
+    TMAgeCoefficientRepository TMAgeCoefficientRepository;
 
     @Test
     @DisplayName("Test: Classifier table is present")
     void injectedRepositoryAreNotNull() {
-        assertNotNull(ageCoefficientRepository);
+        assertNotNull(TMAgeCoefficientRepository);
     }
 
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
     void shouldFindRiskTypes(Integer classifierTitle, BigDecimal ic) {
-        Optional<AgeCoefficient> valueOpt = ageCoefficientRepository.findByAgeCoefficient(classifierTitle);
+        Optional<TMAgeCoefficient> valueOpt = TMAgeCoefficientRepository.findByAgeCoefficient(classifierTitle);
         assertTrue(valueOpt.isPresent());
         assertEquals(ic.setScale(2, RoundingMode.HALF_UP), valueOpt.get().getCoefficient());
     }
 
     @Test
     void shouldNotFind_RiskType_FAKE() {
-        Optional<AgeCoefficient> valueOpt = ageCoefficientRepository.findByAgeCoefficient(151);
+        Optional<TMAgeCoefficient> valueOpt = TMAgeCoefficientRepository.findByAgeCoefficient(151);
         assertTrue(valueOpt.isEmpty());
     }
 

@@ -7,19 +7,15 @@
 
     <changeSet author = "javaguru" id = "27">
         <createTable tableName="person_risks">
-
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
-
             <column name="person_risks_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-
             <column name="risk_Ic" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-
             <column name="premium" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>

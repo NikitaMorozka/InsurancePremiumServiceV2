@@ -21,7 +21,7 @@ class TravelMedicalRiskPremiumCalculatorTest {
     @Mock
     DayCountCalculating dayCountCalculating;
     @Mock
-    AgeCoefficientCalculating ageCoefficientCalculating;
+    TMAgeCoefficientCalculating TMAgeCoefficientCalculating;
     @Mock
     MedicalRiskLimitLevelCalculating medicalRiskLimitLevelCalculating;
 
@@ -38,7 +38,7 @@ class TravelMedicalRiskPremiumCalculatorTest {
     void shouldCalculatePremium() {
         when(dayCountCalculating.calculateDayCount(request)).thenReturn(new BigDecimal(2));
         when(countryDefaultDayRateCalculating.findCountryDefaultDayRate(request)).thenReturn(BigDecimal.TEN);
-        when(ageCoefficientCalculating.findAgeCoefficient(requestPerson)).thenReturn(new BigDecimal(1.2));
+        when(TMAgeCoefficientCalculating.findAgeCoefficient(requestPerson)).thenReturn(new BigDecimal(1.2));
         when(medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(requestPerson)).thenReturn(new BigDecimal(1.2));
         BigDecimal premium = calculator.calculatePremium(request, requestPerson);
         assertEquals(new BigDecimal("28.80"), premium);

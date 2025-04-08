@@ -33,6 +33,7 @@ public class PersonResponse {
     private BigDecimal personAgreementPremium;
 
     private String medicalRiskLimitLevel;
+    private BigDecimal travelCost;
 
     @JsonAlias("person_risks") private List<Risks> risks;
 }

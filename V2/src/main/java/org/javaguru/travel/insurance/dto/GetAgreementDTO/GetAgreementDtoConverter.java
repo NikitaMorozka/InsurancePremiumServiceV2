@@ -42,7 +42,6 @@ public class GetAgreementDtoConverter { // написать тесты
                 .toList();
     }
 
-
     private GetAgreementResponse buildSuccessfulResponse(TravelGetAgreementCoreResult coreResult) {
         AgreementDTO agreement = coreResult.getAgreement();
 
@@ -62,8 +61,6 @@ public class GetAgreementDtoConverter { // написать тесты
 
         return response;
     }
-
-
 
     private PersonResponse buildPersonFromResponse(PersonDTO personDTO) {
         PersonResponse person = new PersonResponse();

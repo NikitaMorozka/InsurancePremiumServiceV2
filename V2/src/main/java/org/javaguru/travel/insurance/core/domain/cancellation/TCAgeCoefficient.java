@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core.domain;
+package org.javaguru.travel.insurance.core.domain.cancellation;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,12 +9,12 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "age_coefficient")
+@Table(name = "travel_cancellation_age_coefficient")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgeCoefficient {
+public class TCAgeCoefficient {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) // генерируем числа по порядку

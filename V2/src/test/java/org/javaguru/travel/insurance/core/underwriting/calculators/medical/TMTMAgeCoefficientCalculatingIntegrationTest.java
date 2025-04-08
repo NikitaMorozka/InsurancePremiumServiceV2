@@ -23,9 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class AgeCoefficientCalculatingIntegrationTest {
+class TMTMAgeCoefficientCalculatingIntegrationTest {
 
-    @Autowired private AgeCoefficientCalculating ageCoefficientCalculating;
+    @Autowired private TMAgeCoefficientCalculating TMAgeCoefficientCalculating;
 
     @Test
     void shouldReturnCorrectAgeCoefficient() {
@@ -33,7 +33,7 @@ class AgeCoefficientCalculatingIntegrationTest {
                 .createPerson()
                 .withPersonBirthDate(createDate("25.11.2002"))
                 .build();
-        BigDecimal result = ageCoefficientCalculating.findAgeCoefficient(person);
+        BigDecimal result = TMAgeCoefficientCalculating.findAgeCoefficient(person);
         assertEquals(new BigDecimal("1.10"), result);
     }
 
@@ -45,7 +45,7 @@ class AgeCoefficientCalculatingIntegrationTest {
                 .build();
 
         assertThrows(RuntimeException.class, () ->
-                ageCoefficientCalculating.findAgeCoefficient(person));
+                TMAgeCoefficientCalculating.findAgeCoefficient(person));
     }
 
     @Test
@@ -55,9 +55,9 @@ class AgeCoefficientCalculatingIntegrationTest {
                 .withPersonBirthDate(createDate("25.11.2002"))
                 .build();
 
-        ReflectionTestUtils.setField(ageCoefficientCalculating, "medicalRiskAgeCoefficientEnabled", false);
+        ReflectionTestUtils.setField(TMAgeCoefficientCalculating, "medicalRiskAgeCoefficientEnabled", false);
 
-        BigDecimal result = ageCoefficientCalculating.findAgeCoefficient(person);
+        BigDecimal result = TMAgeCoefficientCalculating.findAgeCoefficient(person);
         assertEquals(new BigDecimal("1"), result);
     }
 

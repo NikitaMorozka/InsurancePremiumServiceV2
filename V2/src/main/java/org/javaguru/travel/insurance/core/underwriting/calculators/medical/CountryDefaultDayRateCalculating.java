@@ -3,7 +3,7 @@ package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import org.javaguru.travel.insurance.core.domain.CountryDefaultDayRate;
+import org.javaguru.travel.insurance.core.domain.medical.CountryDefaultDayRate;
 import org.javaguru.travel.insurance.core.repositories.CountryDefaultDayRateRepository;
 import org.springframework.stereotype.Component;
 

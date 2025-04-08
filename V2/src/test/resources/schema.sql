@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS country_default_day_rate
 );
 CREATE UNIQUE INDEX ix_country_default_day_rate_country_ic ON country_default_day_rate (country_ic);
 
-CREATE TABLE IF NOT EXISTS age_coefficient
+CREATE TABLE IF NOT EXISTS travel_medical_age_coefficient
 (
     id          BIGINT         NOT NULL AUTO_INCREMENT,
     age_from    INTEGER         NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS age_coefficient
     PRIMARY KEY (id)
 );
 
-CREATE UNIQUE INDEX `ix_age_coefficient_coefficient` ON age_coefficient (age_from,age_to);
+CREATE UNIQUE INDEX `ix_travel_medical_age_coefficient` ON travel_medical_age_coefficient (age_from,age_to);
 
 CREATE TABLE IF NOT EXISTS medical_risk_limit_level(
     id BIGINT NOT NULL AUTO_INCREMENT,
@@ -112,3 +112,25 @@ ALTER TABLE person_risks
         FOREIGN KEY (person_risks_id)
             REFERENCES agreement_persons (id) ON DELETE CASCADE;
 
+CREATE TABLE travel_cost_coefficient (
+                                    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                    travel_cost_from DECIMAL(10,2) NOT NULL,
+                                    travel_cost_to DECIMAL(10,2) NOT NULL,
+                                    coefficient DECIMAL(10,2) NOT NULL
+);
+
+CREATE UNIQUE INDEX ix_travel_cost_coefficient
+    ON travel_cost_coefficient (travel_cost_from, travel_cost_to);
+
+CREATE TABLE travel_cancellation_age_coefficient (
+                                    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                    age_from INTEGER NOT NULL,
+                                    age_to INTEGER NOT NULL,
+                                    coefficient DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE travel_cancellation_country_safety_rating (
+                                    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                    country_ic VARCHAR(100) NOT NULL,
+                                    coefficient DECIMAL(10, 2) NOT NULL
+);

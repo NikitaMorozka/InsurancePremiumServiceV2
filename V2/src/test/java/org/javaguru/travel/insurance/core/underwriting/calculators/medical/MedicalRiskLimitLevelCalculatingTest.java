@@ -1,7 +1,7 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.domain.MedicalRiskLimitLevel;
+import org.javaguru.travel.insurance.core.domain.medical.MedicalRiskLimitLevel;
 import org.javaguru.travel.insurance.core.repositories.MedicalRiskLimitLevelRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
