@@ -7,7 +7,6 @@ import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.repositories.ClassifierValueRepository;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
-import org.javaguru.travel.insurance.core.validations.agreement.ValidationAgreementOptional;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -20,11 +19,17 @@ public class MedicalRiskLimitLevelInDBValidation implements ValidationPersonOpti
     private final ErrorValidationFactory errorsHandler;
 
     @Override
-    public Optional<ValidationErrorDTO> validationOptional(PersonDTO request) {
+    public Optional<ValidationErrorDTO> validationOptional(AgreementDTO agreementDTO, PersonDTO request) {
         return (isMedicalRiskLimitLevelNotBlank(request))
-                || !existInDatabase(request.getMedicalRiskLimitLevel())
+                && !existInDatabase(request.getMedicalRiskLimitLevel())
+                && containsTravelMedical(agreementDTO)
                 ? Optional.of(errorsHandler.processing("ERROR_CODE_14"))
                 : Optional.empty();
+    }
+
+    private boolean containsTravelMedical(AgreementDTO agreementDTO) {
+        return agreementDTO.getSelectedRisks() != null
+                && agreementDTO.getSelectedRisks().contains("TRAVEL_MEDICAL");
     }
 
     private boolean isMedicalRiskLimitLevelNotBlank(PersonDTO request) {

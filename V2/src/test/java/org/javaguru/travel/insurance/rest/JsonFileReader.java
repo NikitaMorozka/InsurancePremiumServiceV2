@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.rest;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -10,7 +11,9 @@ import java.nio.file.Path;
 public class JsonFileReader {
     public String readJsonFromFile(String filePath) {
         try{
-            return new String(Files.readAllBytes(Path.of(filePath)));
+            var resource = new ClassPathResource(filePath);
+            Path path = resource.getFile().toPath(); // преобразуем в Path
+            return Files.readString(path);
         }catch (IOException e ){
             throw new RuntimeException(e);
         }

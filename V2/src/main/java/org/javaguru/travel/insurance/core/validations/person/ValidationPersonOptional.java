@@ -7,5 +7,5 @@ import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import java.util.Optional;
 
 public interface ValidationPersonOptional {
-    Optional<ValidationErrorDTO> validationOptional(PersonDTO request);
+    Optional<ValidationErrorDTO> validationOptional(AgreementDTO agreementDTO, PersonDTO request);
 }

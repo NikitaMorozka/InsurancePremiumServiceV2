@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.core.validations.person;
 
+import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
@@ -20,6 +21,7 @@ import static org.mockito.Mockito.when;
 class PersonFirstNameValidatorTest {
 
     @Mock private PersonDTO request;
+    @Mock private AgreementDTO agreementDTO;
     @Mock private ErrorValidationFactory errorsHandler;
 
     @InjectMocks
@@ -30,7 +32,7 @@ class PersonFirstNameValidatorTest {
     void shouldNotReturnErrorWhenPersonFirstNameIsProvided() {
         when(request.getPersonFirstName()).thenReturn("Name");
 
-        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(request);
+        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(agreementDTO, request);
 
         assertTrue(validateErrors.isEmpty());
     }
@@ -41,7 +43,7 @@ class PersonFirstNameValidatorTest {
         when(request.getPersonFirstName()).thenReturn(null);
         when(errorsHandler.processing("ERROR_CODE_1")).thenReturn(new ValidationErrorDTO("ERROR_CODE_1","Field personFirstName is empty!"));
 
-        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(request);
+        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(agreementDTO, request);
 
         assertEquals("ERROR_CODE_1", validateErrors.get().errorCode());
         assertEquals("Field personFirstName is empty!", validateErrors.get().description() );
@@ -54,7 +56,7 @@ class PersonFirstNameValidatorTest {
         when(request.getPersonFirstName()).thenReturn("");
         when(errorsHandler.processing("ERROR_CODE_1")).thenReturn(new ValidationErrorDTO("ERROR_CODE_1","Field personFirstName is empty!"));
 
-        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(request);
+        Optional<ValidationErrorDTO> validateErrors = personFirstNameValidator.validationOptional(agreementDTO, request);
 
         assertEquals("ERROR_CODE_1", validateErrors.get().errorCode());
         assertEquals("Field personFirstName is empty!", validateErrors.get().description());

@@ -2,7 +2,6 @@ package org.javaguru.travel.insurance.core.validations.agreement;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -31,14 +30,12 @@ class PersonsUniqueCodeValidatorTest {
     @Test
     @DisplayName("Тест: персональные коды уникальны — ошибок нет")
     void shouldNotReturnErrorWhenPersonCodesAreUnique() {
-        PersonDTO personDTO1 = PersonDTOBuilder
-                .createPerson()
-                .withPersonCode("One")
+        PersonDTO personDTO1 = PersonDTO.builder()
+                .personCode("One")
                 .build();
 
-        PersonDTO personDTO2 = PersonDTOBuilder
-                .createPerson()
-                .withPersonCode("Two")
+        PersonDTO personDTO2 = PersonDTO.builder()
+                .personCode("Two")
                 .build();
 
         when(agreementDTO.getPersons()).thenReturn(List.of(personDTO1, personDTO2));
@@ -50,14 +47,12 @@ class PersonsUniqueCodeValidatorTest {
     @Test
     @DisplayName("Тест: персональные коды не уникальны — возвращается ошибка")
     void shouldReturnErrorWhenPersonCodesAreNotUnique() {
-        PersonDTO personDTO1 = PersonDTOBuilder
-                .createPerson()
-                .withPersonCode("One")
+        PersonDTO personDTO1 = PersonDTO.builder()
+                .personCode("One")
                 .build();
 
-        PersonDTO personDTO2 = PersonDTOBuilder
-                .createPerson()
-                .withPersonCode("One")
+        PersonDTO personDTO2 = PersonDTO.builder()
+                .personCode("One")
                 .build();
 
         when(agreementDTO.getPersons()).thenReturn(List.of(personDTO1, personDTO2));

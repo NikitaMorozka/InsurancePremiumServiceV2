@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +31,7 @@ class TravelAgreementValidatorImplTest {
     void shouldReturnErrorsForInvalidFields() {
         List<ValidationErrorDTO> personErrors = List.of(new ValidationErrorDTO(), new ValidationErrorDTO());
         List<ValidationErrorDTO> agreementErrors = List.of(new ValidationErrorDTO(), new ValidationErrorDTO());
-        when(personValidator.validate(anyList())).thenReturn(personErrors);
+        when(personValidator.validate(agreementRequest)).thenReturn(personErrors);
         when(agreementValidator.validate(agreementRequest)).thenReturn(agreementErrors);
         List<ValidationErrorDTO> errors = requestValidator.validate(agreementRequest);
         assertEquals(4, errors.size());
@@ -42,7 +41,7 @@ class TravelAgreementValidatorImplTest {
     @Test
     @DisplayName("Тест: Если список валидаторов пуст, ошибок не должно быть")
     void shouldReturnNoErrorsWhenNoValidatorsPresent() {
-        when(personValidator.validate(anyList())).thenReturn(List.of());
+        when(personValidator.validate(agreementRequest)).thenReturn(List.of());
         when(agreementValidator.validate(agreementRequest)).thenReturn(List.of());
         List<ValidationErrorDTO> errors = requestValidator.validate(agreementRequest);
         assertTrue(errors.isEmpty());

@@ -1,7 +1,6 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import org.javaguru.travel.insurance.core.api.dto.AgreementDTOBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,8 @@ class CountryDefaultDayRateCalculatingIntegrationTest {
 
     @Test
     void shouldReturnCorrectCountryDefaultDayRate() {
-        AgreementDTO agreement = AgreementDTOBuilder
-                .createAgreement()
-                .withCountry("SPAIN")
+        AgreementDTO agreement = AgreementDTO.builder()
+                .country("SPAIN")
                 .build();
 
         BigDecimal result = countryDefaultDayRateCalculating.findCountryDefaultDayRate(agreement).setScale(2, RoundingMode.HALF_UP);
@@ -37,9 +35,8 @@ class CountryDefaultDayRateCalculatingIntegrationTest {
 
     @Test
     void shouldThrowExceptionIfCountryNotFound() {
-        AgreementDTO agreement =AgreementDTOBuilder
-                .createAgreement()
-                .withCountry("UNKNOWN")
+        AgreementDTO agreement = AgreementDTO.builder()
+                .country("UNKNOWN")
                 .build();
 
         assertThrows(RuntimeException.class, () ->

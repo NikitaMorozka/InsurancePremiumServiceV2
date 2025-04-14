@@ -28,21 +28,20 @@ class AgreementDateFromValidationIntegrationTest {
 
     @Test
     void shouldReturnErrorWhenDateFromIsNull() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonCode("12341")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO.builder()
+                .personFirstName("Никита")
+                .personLastName("Морозов")
+                .personCode("12341")
+                .personBirthDate(createDate("25.11.2002"))
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(null)
-                .withDateTo(createDate("01.01.2030"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPersons(List.of(person))
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(null)
+                .agreementDateTo(createDate("01.01.2030"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(person))
                 .build();
 
         List<ValidationErrorDTO> errors = validator.validate(agreement);
@@ -54,21 +53,20 @@ class AgreementDateFromValidationIntegrationTest {
 
     @Test
      void shouldReturnErrorWhenDateFromIsInThePast() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonCode("12341")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO.builder()
+                .personFirstName("Никита")
+                .personLastName("Морозов")
+                .personCode("12341")
+                .personBirthDate(createDate("25.11.2002"))
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(createDate("01.01.2020"))
-                .withDateTo(createDate("01.01.2030"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("TRAVEL_MEDICAL")
-                .withPersons(List.of(person))
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("01.01.2020"))
+                .agreementDateTo(createDate("01.01.2030"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(person))
                 .build();
 
         List<ValidationErrorDTO> errors = validator.validate(agreement);

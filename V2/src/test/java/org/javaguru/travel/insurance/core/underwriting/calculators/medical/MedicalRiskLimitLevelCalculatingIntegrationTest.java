@@ -1,7 +1,6 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,9 @@ class MedicalRiskLimitLevelCalculatingIntegrationTest {
 
     @Test
     void shouldReturnCorrectAgeCoefficient() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO
+                .builder()
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
         BigDecimal result = medicalRiskLimitLevelCalculating.findMedicalRiskLimitLevel(person);
@@ -38,9 +37,9 @@ class MedicalRiskLimitLevelCalculatingIntegrationTest {
 
     @Test
     void shouldThrowExceptionIfCountryNotFound() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withMedicalRiskLimitLevel("UNKNOWN")
+        PersonDTO person = PersonDTO
+                .builder()
+                .medicalRiskLimitLevel("UNKNOWN")
                 .build();
 
         assertThrows(RuntimeException.class, () ->

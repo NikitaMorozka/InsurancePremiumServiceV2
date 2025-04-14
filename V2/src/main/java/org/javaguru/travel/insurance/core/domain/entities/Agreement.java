@@ -23,7 +23,7 @@ public class Agreement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "uuid", unique = true, nullable = false)
+    @Column(name = "uuid", length = 36, nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID uuid;
 
     @Column(name = "date_from", nullable = false)

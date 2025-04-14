@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface ValidationAgreementOptional {
     Optional<ValidationErrorDTO> validationOptional(AgreementDTO request);
-
 }

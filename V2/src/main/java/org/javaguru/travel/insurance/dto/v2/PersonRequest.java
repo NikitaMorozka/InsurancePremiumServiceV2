@@ -25,7 +25,7 @@ public class PersonRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirthDate;
     private String medicalRiskLimitLevel;
     private BigDecimal travelCost;
 

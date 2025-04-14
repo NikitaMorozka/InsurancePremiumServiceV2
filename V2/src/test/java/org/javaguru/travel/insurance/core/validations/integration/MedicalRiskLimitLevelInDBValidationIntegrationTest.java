@@ -39,17 +39,19 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
 
     @Test
     void shouldReturnErrorWhenMedicalRiskLimitLevelNotExistInDb() {
-        RiskDTO riskDTO = RiskDTOBuilder
-                .createRiskDTO()
-                .withRiskIc("MEDICAL_RISK_LIMIT_LEVEL")
-                .withPremium(new BigDecimal("1.1"))
+        AgreementDTO agreementDTO = new AgreementDTO();
+
+        RiskDTO riskDTO = RiskDTO
+                .builder()
+                .riskIc("MEDICAL_RISK_LIMIT_LEVEL")
+                .premium(new BigDecimal("1.1"))
                 .build();
 
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate())
-                .withRisks(List.of(riskDTO))
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO
+                .builder()
+                .personBirthDate(createDate())
+                .risks(List.of(riskDTO))
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
 
@@ -59,7 +61,7 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
         ValidationErrorDTO validationErrorDTO = new ValidationErrorDTO("ERROR_CODE_14", "Medical risk limit level not found");
         when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
 
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(person);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, person);
 
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationErrorDTO, validationErrorOpt.get());
@@ -69,36 +71,39 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
 
     @Test
     void shouldReturnErrorWhenMedicalRiskLimitLevelIsBlank() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate())
-                .withRisks(null)
-                .withMedicalRiskLimitLevel("   ")
+        AgreementDTO agreementDTO = new AgreementDTO();
+
+        PersonDTO person = PersonDTO
+                .builder()
+                .personBirthDate(createDate())
+                .risks(null)
+                .medicalRiskLimitLevel("   ")
                 .build();
 
         ValidationErrorDTO validationErrorDTO = mock(ValidationErrorDTO.class);
         when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(person);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, person);
         assertTrue(validationErrorOpt.isPresent());
     }
 
     @Test
     void shouldNotReturnErrorWhenMedicalRiskLimitLevelExistInDb() {
-        RiskDTO riskDTO = RiskDTOBuilder
-                .createRiskDTO()
-                .withRiskIc("MEDICAL_RISK_LIMIT_LEVEL")
-                .withPremium(new BigDecimal("1.1"))
+        AgreementDTO agreementDTO = new AgreementDTO();
+
+        RiskDTO riskDTO = RiskDTO
+                .builder()
+                .riskIc("MEDICAL_RISK_LIMIT_LEVEL")
+                .premium(new BigDecimal("1.1"))
                 .build();
 
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate())
-                .withRisks(List.of(riskDTO))
-                .withMedicalRiskLimitLevel("LEVEL_15000")
+        PersonDTO person = PersonDTO.builder()
+                .personBirthDate(createDate())
+                .risks(List.of(riskDTO))
+                .medicalRiskLimitLevel("LEVEL_15000")
                 .build();
 
         when(classifierValueRepository.findByClassifierTitleAndIc(riskDTO.getRiskIc(), person.getMedicalRiskLimitLevel())).thenReturn(Optional.of(new ClassifierValue()));
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(person);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, person);
         assertTrue(validationErrorOpt.isEmpty());
     }
 

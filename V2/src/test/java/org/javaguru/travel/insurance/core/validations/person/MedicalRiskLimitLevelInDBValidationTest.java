@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.core.validations.person;
 
+import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.domain.ClassifierValue;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
@@ -21,6 +22,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class MedicalRiskLimitLevelInDBValidationTest {
     @Mock PersonDTO request;
+    @Mock
+    AgreementDTO agreementDTO;
     @Mock ClassifierValueRepository classifierValueRepository;
     @Mock ErrorValidationFactory errorsHandler;
 
@@ -34,7 +37,7 @@ class MedicalRiskLimitLevelInDBValidationTest {
                 .thenReturn(Optional.empty());
         ValidationErrorDTO validationErrorDTO = mock(ValidationErrorDTO.class);
         when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(request);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, request);
         assertTrue(validationErrorOpt.isPresent());
         assertSame(validationErrorDTO, validationErrorOpt.get());
     }
@@ -44,7 +47,7 @@ class MedicalRiskLimitLevelInDBValidationTest {
         when(request.getMedicalRiskLimitLevel()).thenReturn("   ");
         ValidationErrorDTO validationErrorDTO = mock(ValidationErrorDTO.class);
         when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(request);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, request);
         assertTrue(validationErrorOpt.isPresent());
     }
 
@@ -54,7 +57,7 @@ class MedicalRiskLimitLevelInDBValidationTest {
         when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", "LEVEL_15000"))
                 .thenReturn(Optional.empty());
         when(classifierValueRepository.findByClassifierTitleAndIc("MEDICAL_RISK_LIMIT_LEVEL", request.getMedicalRiskLimitLevel())).thenReturn(Optional.of(new ClassifierValue()));
-        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(request);
+        Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, request);
         assertTrue(validationErrorOpt.isEmpty());
     }
 }

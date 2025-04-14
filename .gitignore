@@ -7,7 +7,7 @@
 
 #log specific
 *.log
-
+V2/jmeterdata/
 #Mac
 **/.DS_Store
 

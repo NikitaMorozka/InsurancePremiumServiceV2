@@ -26,6 +26,6 @@ public class AgreementPerson {
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
-    @Column(name = "medical_risk_limit_level", nullable = false)
+    @Column(name = "medical_risk_limit_level")
     private String medicalRiskLimitLevel;
 }

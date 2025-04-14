@@ -1,9 +1,7 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import org.javaguru.travel.insurance.core.api.dto.AgreementDTOBuilder;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +30,17 @@ class TravelMedicalRiskPremiumCalculatorIntegrationTest {
 
     @Test
     void shouldCalculatePremium() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withMedicalRiskLimitLevel("LEVEL_10000")
+        PersonDTO person = PersonDTO.builder()
+                .personBirthDate(createDate("25.11.2002"))
+                .medicalRiskLimitLevel("LEVEL_10000")
                 .build();
 
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(LocalDate.now())
-                .withDateTo(LocalDate.now().plusDays(10))
-                .withCountry("SPAIN")
-                .withSelectedRisk(List.of("TRAVEL_MEDICAL"))
-                .withPersons(List.of(person))
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(LocalDate.now())
+                .agreementDateTo(LocalDate.now().plusDays(10))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .persons(List.of(person))
                 .build();
 
         BigDecimal premium = calculator.calculatePremium(agreement, person);

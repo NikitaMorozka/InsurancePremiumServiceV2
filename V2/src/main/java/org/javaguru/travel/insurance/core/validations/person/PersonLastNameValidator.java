@@ -2,6 +2,7 @@ package org.javaguru.travel.insurance.core.validations.person;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.validations.ErrorValidationFactory;
@@ -15,7 +16,7 @@ class PersonLastNameValidator implements ValidationPersonOptional {
     private final ErrorValidationFactory errorsHandler;
 
     @Override
-    public Optional<ValidationErrorDTO> validationOptional(PersonDTO request) {
+    public Optional<ValidationErrorDTO> validationOptional(AgreementDTO agreementDTO, PersonDTO request) {
         return ((request.getPersonLastName() == null) || (request.getPersonLastName().isEmpty()))
                 ? Optional.of(errorsHandler.processing("ERROR_CODE_2"))
                 : Optional.empty();

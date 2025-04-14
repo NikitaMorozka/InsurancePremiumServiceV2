@@ -1,7 +1,6 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
-import org.javaguru.travel.insurance.core.api.dto.PersonDTOBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,8 @@ class TMTMAgeCoefficientCalculatingIntegrationTest {
 
     @Test
     void shouldReturnCorrectAgeCoefficient() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate("25.11.2002"))
+        PersonDTO person = PersonDTO.builder()
+                .personBirthDate(createDate("25.11.2002"))
                 .build();
         BigDecimal result = TMAgeCoefficientCalculating.findAgeCoefficient(person);
         assertEquals(new BigDecimal("1.10"), result);
@@ -39,9 +37,8 @@ class TMTMAgeCoefficientCalculatingIntegrationTest {
 
     @Test
     void shouldThrowExceptionIfAgeNotFound() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate("25.11.1850"))
+        PersonDTO person = PersonDTO.builder()
+                .personBirthDate(createDate("25.11.1850"))
                 .build();
 
         assertThrows(RuntimeException.class, () ->
@@ -50,9 +47,8 @@ class TMTMAgeCoefficientCalculatingIntegrationTest {
 
     @Test
     void shouldReturnDefaultAgeCoefficient() {
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonBirthDate(createDate("25.11.2002"))
+        PersonDTO person = PersonDTO.builder()
+                .personBirthDate(createDate("25.11.2002"))
                 .build();
 
         ReflectionTestUtils.setField(TMAgeCoefficientCalculating, "medicalRiskAgeCoefficientEnabled", false);

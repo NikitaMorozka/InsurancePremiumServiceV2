@@ -41,21 +41,20 @@ class EmptyRiskDTOValidatorIntegrationTest {
         when(errorsHandler.processing("ERROR_CODE_7"))
                 .thenReturn(new ValidationErrorDTO("ERROR_CODE_7", "Must not be empty!"));
 
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withRisks(null)
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO.builder()
+                .personFirstName("Никита")
+                .personLastName("Морозов")
+                .personBirthDate(createDate("25.11.2002"))
+                .risks(null)
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(createDate("01.01.2020"))
-                .withDateTo(createDate("01.01.2030"))
-                .withCountry("SPAIN")
-                .withSelectedRisk("")
-                .withPersons(List.of(person))
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("01.01.2020"))
+                .agreementDateTo(createDate("01.01.2030"))
+                .country("SPAIN")
+                .selectedRisks(List.of(""))
+                .persons(List.of(person))
                 .build();
 
         Optional<ValidationErrorDTO> validationError = emptyRisksValidatorTest.validationOptional(agreement);
@@ -72,21 +71,20 @@ class EmptyRiskDTOValidatorIntegrationTest {
         when(errorsHandler.processing("ERROR_CODE_7"))
                 .thenReturn(new ValidationErrorDTO("ERROR_CODE_7", "Must not be empty!"));
 
-        PersonDTO person = PersonDTOBuilder
-                .createPerson()
-                .withPersonFirstName("Никита")
-                .withPersonLastName("Морозов")
-                .withPersonBirthDate(createDate("25.11.2002"))
-                .withRisks(null)
-                .withMedicalRiskLimitLevel("LEVEL_20000")
+        PersonDTO person = PersonDTO.builder()
+                .personFirstName("Никита")
+                .personLastName("Морозов")
+                .personBirthDate(createDate("25.11.2002"))
+                .risks(null)
+                .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(createDate("01.01.2020"))
-                .withDateTo(createDate("01.01.2030"))
-                .withCountry("SPAIN")
-                .withSelectedRisk(List.of("TRAVEL_MEDICAL","","TRAVEL_LOSS_BAGGAGE"))
-                .withPersons(List.of(person))
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("01.01.2020"))
+                .agreementDateTo(createDate("01.01.2030"))
+                .country("SPAIN")
+                .selectedRisks(List.of("TRAVEL_MEDICAL","","TRAVEL_LOSS_BAGGAGE"))
+                .persons(List.of(person))
                 .build();
 
         Optional<ValidationErrorDTO> validationError = emptyRisksValidatorTest.validationOptional(agreement);

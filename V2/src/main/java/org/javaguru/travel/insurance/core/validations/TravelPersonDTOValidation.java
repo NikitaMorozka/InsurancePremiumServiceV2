@@ -2,6 +2,7 @@ package org.javaguru.travel.insurance.core.validations;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
 import org.javaguru.travel.insurance.core.api.dto.PersonDTO;
 import org.javaguru.travel.insurance.core.api.dto.ValidationErrorDTO;
 import org.javaguru.travel.insurance.core.validations.person.ValidationPersonList;
@@ -19,30 +20,31 @@ class TravelPersonDTOValidation {
     private final List<ValidationPersonList> validationPersonLists;
 
 
-    List<ValidationErrorDTO> validate(List<PersonDTO> persons) {
-        return persons.stream()
-                .map(this::collectPersonErrors)
+    List<ValidationErrorDTO> validate(AgreementDTO agreementDTO) {
+        return agreementDTO.getPersons().stream()
+                .map(person -> collectPersonErrors(agreementDTO, person))
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
 
-    private List<ValidationErrorDTO> collectPersonErrors(PersonDTO personDTO) {
-        List<ValidationErrorDTO> personOptionalErrors = validatePersonOptionals(personDTO);
-        List<ValidationErrorDTO> personListErrors = validatePersonLists(personDTO);
+
+    private List<ValidationErrorDTO> collectPersonErrors(AgreementDTO agreementDTO, PersonDTO personDTO) {
+        List<ValidationErrorDTO> personOptionalErrors = validatePersonOptionals(agreementDTO,personDTO);
+        List<ValidationErrorDTO> personListErrors = validatePersonLists(agreementDTO, personDTO);
         return mergeValidationErrors(personOptionalErrors, personListErrors);
     }
 
-    private List<ValidationErrorDTO> validatePersonOptionals(PersonDTO request) {
+    private List<ValidationErrorDTO> validatePersonOptionals(AgreementDTO agreementDTO, PersonDTO personDTO) {
         return validationPersonOptionals.stream()
-                .map(validation -> validation.validationOptional(request))
+                .map(validation -> validation.validationOptional(agreementDTO, personDTO))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
     }
 
-    private List<ValidationErrorDTO> validatePersonLists(PersonDTO request) {
+    private List<ValidationErrorDTO> validatePersonLists(AgreementDTO agreementDTO, PersonDTO personDTO) {
         return validationPersonLists.stream()
-                .map(validation -> validation.validationList(request))
+                .map(validation -> validation.validationList(agreementDTO,personDTO))
                 .filter(Objects::nonNull)
                 .flatMap(Collection::stream)
                 .toList();

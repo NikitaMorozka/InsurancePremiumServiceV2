@@ -100,7 +100,7 @@ public class DtoV2Converter { // написать тесты
             person.setPersonFirstName(persons.getPersonFirstName());
             person.setPersonLastName(persons.getPersonLastName());
             person.setPersonCode(persons.getPersonCode());
-            person.setPersonBirthDate(persons.getDateOfBirth());
+            person.setPersonBirthDate(persons.getDateOfBirthDate());
             person.setMedicalRiskLimitLevel(persons.getMedicalRiskLimitLevel());
             person.setTravelCost(persons.getTravelCost());
             personsDTO.add(person);

@@ -13,5 +13,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Risks {
     String riskIc;
+
     BigDecimal premium;
 }

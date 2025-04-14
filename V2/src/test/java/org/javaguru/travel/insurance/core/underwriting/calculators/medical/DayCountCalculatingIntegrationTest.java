@@ -1,7 +1,6 @@
 package org.javaguru.travel.insurance.core.underwriting.calculators.medical;
 
 import org.javaguru.travel.insurance.core.api.dto.AgreementDTO;
-import org.javaguru.travel.insurance.core.api.dto.AgreementDTOBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,10 @@ class DayCountCalculatingIntegrationTest {
 
     @Test
     void shouldReturnCorrectDayCount(){
-        AgreementDTO agreement = AgreementDTOBuilder.createAgreement()
-                .withDateFrom(createDate("01.01.2021"))
-                .withDateTo(createDate("01.01.2022"))
-                .withPersons(List.of())
+        AgreementDTO agreement = AgreementDTO.builder()
+                .agreementDateFrom(createDate("01.01.2021"))
+                .agreementDateTo(createDate("01.01.2022"))
+                .persons(List.of())
                 .build();
 
         BigDecimal result = dayCountCalculating.calculateDayCount(agreement);
