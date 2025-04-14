@@ -20,7 +20,7 @@ public class ClassifierValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // генерируем числа по порядку
     private Long id;
 
-    @ManyToOne // Связь "многие-к-одному" с Classifier
+    @ManyToOne
     @JoinColumn(name = "classifier_id", nullable = false)
     Classifier classifier;
 
