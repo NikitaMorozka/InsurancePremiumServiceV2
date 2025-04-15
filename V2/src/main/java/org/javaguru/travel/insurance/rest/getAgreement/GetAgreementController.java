@@ -33,6 +33,7 @@ public class GetAgreementController {
     public GetAgreementResponse showUuid(@PathVariable("uuid") UUID uuid) {
         return buildResponse(uuid);
     }
+
     private GetAgreementResponse buildResponse(UUID uuid) {
         stopwatch = Stopwatch.createStarted();
         return processRequest(uuid);

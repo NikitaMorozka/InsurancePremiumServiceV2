@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class TravelGetAllAgreementUuidsServiceImpl implements TravelGetAllAgreementUuidsService{
+class TravelGetAllAgreementUuidsServiceImpl implements TravelGetAllAgreementUuidsService{
 
     private final AgreementRepository agreementRepository;
 
