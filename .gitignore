@@ -8,6 +8,7 @@
 #log specific
 *.log
 V2/jmeterdata/
+InsurancePremiumServiceV2/export/
 #Mac
 **/.DS_Store
 

@@ -22,9 +22,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
@@ -33,11 +35,14 @@ public class AgreementXmlExporterJob {
     private final TravelGetAgreementService travelGetAgreementService;
     private final TravelGetAllAgreementUuidsService travelGetAllAgreementUuidsService;
 
-    @Value( "${agreement.xml.exporter.job.path}" )
+    @Value("${agreement.xml.exporter.job.path}")
     private String agreementExportPath;
 
     @Value("${agreement.xml.exporter.job.enabled}")
     private boolean agreementXmlExporterJobEnabled;
+
+    @Value("${agreement.xml.exporter.job.thread-count}")
+    private int threadCount;
 
     @Scheduled(fixedRate = 5, timeUnit = TimeUnit.SECONDS)
     public void doJob() {
@@ -47,24 +52,40 @@ public class AgreementXmlExporterJob {
     }
 
     void executeJob() {
-            logger.info("AgreementXmlExporterJob started");
-            List<UUID> uuids = travelGetAllAgreementUuidsService.getResult(new TravelGetAgreementUuidsCoreCommand())
-                    .getAgreementUuids();
-
-        uuids.forEach(this::exportAgreement);
-
+        logger.info("AgreementXmlExporterJob started");
+        List<UUID> uuids = travelGetAllAgreementUuidsService.getResult(new TravelGetAgreementUuidsCoreCommand())
+                .getAgreementUuids();
+        ExecutorService service = Executors.newFixedThreadPool(threadCount);
+        Collection<Future<?>> futures = new LinkedList<>();
+        uuids.forEach(uuid -> futures.add(service.submit(() -> exportAgreement(uuid))));
+        waitUntilAllTasksWillBeExecuted(futures);
+        service.shutdown();
         logger.info("AgreementXmlExporterJob finished");
     }
 
+
+    private static void waitUntilAllTasksWillBeExecuted(Collection<Future<?>> futures) {
+        for (Future<?> future : futures) {
+            try {
+                future.get();
+            } catch (InterruptedException e) {
+                logger.info("AgreementXmlExporterJob exception", e);
+            } catch (ExecutionException e) {
+                logger.info("AgreementXmlExporterJob exception", e);
+            }
+        }
+    }
+
+
     private void exportAgreement(UUID agreementUuid) {
         try {
-            logger.info("AgreementXmlExporterJob started for uuid = " + agreementUuid);
+            logger.info("AgreementXmlExporterJob started for uuid = {}", agreementUuid);
             AgreementDTO agreement = getAgreementData(agreementUuid);
             String agreementXml = convertAgreementToXml(agreement);
             storeXmlToFile(agreementUuid, agreementXml);
-            logger.info("AgreementXmlExporterJob finished for uuid = " + agreementUuid);
+            logger.info("AgreementXmlExporterJob finished for uuid = %s".formatted(agreementUuid));
         } catch (Exception e) {
-            logger.info("AgreementXmlExporterJob failed for agreement uuid = " + agreementUuid, e);
+            logger.info("AgreementXmlExporterJob failed for agreement uuid %s".formatted(agreementUuid), e);
         }
     }
 
@@ -78,12 +99,12 @@ public class AgreementXmlExporterJob {
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         StringWriter sw = new StringWriter();
-        marshaller.marshal(agreement,sw);
+        marshaller.marshal(agreement, sw);
         return sw.toString();
     }
 
     private void storeXmlToFile(UUID agreementUuid, String agreementXml) throws IOException {
         Path path = Paths.get(agreementExportPath, "agreement" + agreementUuid + ".xml");
-        Files.writeString(path, agreementXml,StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        Files.writeString(path, agreementXml, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 }
