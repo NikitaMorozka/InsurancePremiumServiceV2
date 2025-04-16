@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelGetAllAgreementUuidsCoreResult {
+public class TravelGetNotExportedAgreementUuidsCoreResult {
 
     private List<ValidationErrorDTO> errors;
 
@@ -23,7 +23,7 @@ public class TravelGetAllAgreementUuidsCoreResult {
         return errors != null && !errors.isEmpty();
     }
 
-    public TravelGetAllAgreementUuidsCoreResult(List<ValidationErrorDTO> errors) {
+    public TravelGetNotExportedAgreementUuidsCoreResult(List<ValidationErrorDTO> errors) {
         this.errors = errors;
     }
 

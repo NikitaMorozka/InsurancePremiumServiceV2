@@ -13,6 +13,8 @@ import java.util.UUID;
 public interface AgreementRepository extends JpaRepository<Agreement, Long> {
     Optional<Agreement> findByUuid(UUID uuid);
 
-    @Query("SELECT a.uuid FROM Agreement a")
-    List<UUID> findAllUuids();
+    @Query(value = "SELECT agr.uuid " +
+            "FROM agreements agr " +
+            "WHERE agr.uuid NOT IN (SELECT agreement_uuid FROM agreements_xml_export)", nativeQuery = true)
+    List<byte[]> getNotExportedAgreementUuids();
 }
