@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.core.api.dto;
 
+import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -23,8 +24,10 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonDTO {
 
+    @Size(max = 200)
     private String personFirstName;
 
+    @Size(max = 200)
     private String personLastName;
 
     private String personCode;
