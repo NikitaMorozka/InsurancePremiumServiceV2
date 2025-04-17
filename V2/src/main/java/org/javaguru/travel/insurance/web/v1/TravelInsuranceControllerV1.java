@@ -32,4 +32,5 @@ public class TravelInsuranceControllerV1 {
         modelMap.addAttribute("response", response);
         return "travel-calculate-premiumV1";
     }
+
 }

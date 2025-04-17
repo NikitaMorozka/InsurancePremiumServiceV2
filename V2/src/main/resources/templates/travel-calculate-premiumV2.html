@@ -63,6 +63,7 @@
     <br><br>
     <button type="submit">Calculate Premium</button>
 </form>
+<button onclick="window.location.href='/insurance/travel/web/v2';">Очистить форму</button>
 
 <!-- Display errors if there are any -->
 <div th:if="${response.errors != null}">
@@ -99,6 +100,18 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var date = new Date();
+        date.setDate(date.getDate() + 1); // Set to tomorrow's date
+        var dateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+        document.getElementById('agreementDateFrom').value = dateString; // Set the value of the date input
+
+        date.setDate(date.getDate() + 1);
+        dateString = date.toISOString().split('T')[0];
+        document.getElementById('agreementDateTo').value = dateString;
+    });
+</script>
 
 </body>
 </html>

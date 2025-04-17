@@ -27,6 +27,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2:2.2.224'
 
 	implementation('org.springframework.boot:spring-boot-starter-web:3.2.5')
+	//шабллонизатор
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf:3.2.5')
 
 	implementation('com.fasterxml.jackson.core:jackson-core:2.14.2')
@@ -68,16 +69,16 @@ dependencies {
 jar {
 	enabled = false
 }
-
+//создание новой версии приложения
 //./gradlew bootJar
+//java -jar V2/build/libs/insurance-calculator-1.0.7-test.jar
 bootJar {
 	enabled = true
 	archiveBaseName = 'insurance-calculator'
-	archiveVersion = '1.0.6-test'
+	archiveVersion = '1.0.7-test'
 }
 
 //./gradlew publish
-//java -jar student_morozov_nikita/build/libs/insurance-calculator-1.0.6-test.jar
 publishing {//настройка публикации:
 	publications {
 		mavenJava(MavenPublication) {//mavenJava(MavenPublication) — создаётся публикация для Maven.
@@ -85,7 +86,7 @@ publishing {//настройка публикации:
 			// groupId, artifactId, version — это идентификаторы проекта,которые нужны Maven для распознавания артефакта.
 			groupId = 'org.javaguru'
 			artifactId = 'insurance-calculator'
-			version = '1.0.5'
+			version = '1.0.7'
 
 			// Это метаданные о проекте: Название, описание и лицензия (что удобно при публикации в общий репозиторий, например, Maven Central).
 			pom {
