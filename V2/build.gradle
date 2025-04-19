@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version "3.2.5"
 	id 'maven-publish'
+	id 'com.palantir.docker' version '0.35.0'
 }
 
 dependencies {
@@ -16,6 +17,8 @@ dependencies {
 	testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.2'
 	implementation 'org.slf4j:slf4j-api:1.7.25'
 	implementation 'commons-io:commons-io:2.11.0'
+
+
 
 	implementation('org.springframework.boot:spring-boot-starter-validation:3.2.5')
 
@@ -72,34 +75,16 @@ jar {
 }
 //создание новой версии приложения
 //./gradlew bootJar
-//java -jar V2/build/libs/insurance-calculator-1.0.7-test.jar
+//java -jar V2/build/libs/insurance-calculator-1.0.8.jar
 bootJar {
 	enabled = true
 	archiveBaseName = 'insurance-calculator'
-	archiveVersion = '1.0.7-test'
+	archiveVersion = '1.0.8'
 }
 
-//./gradlew publish
-publishing {//настройка публикации:
-	publications {
-		mavenJava(MavenPublication) {//mavenJava(MavenPublication) — создаётся публикация для Maven.
-			artifact bootJar  //указывает, что нужно публиковать Spring Boot jar-файл, который создаётся с помощью bootJar (это специальная сборка Spring Boot).
-			// groupId, artifactId, version — это идентификаторы проекта,которые нужны Maven для распознавания артефакта.
-			groupId = 'org.javaguru'
-			artifactId = 'insurance-calculator'
-			version = '1.0.7'
-
-			// Это метаданные о проекте: Название, описание и лицензия (что удобно при публикации в общий репозиторий, например, Maven Central).
-			pom {
-				name = 'Insurance Calculator Application'
-				description = 'Application to calculate travel insurance premium'
-				licenses {
-					license {
-						name = 'The Apache License, Version 2.0'
-						url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					}
-				}
-			}
-		}
-	}
+//./gradlew docker
+docker {
+	name "insurance-calculator:1.0.8"
+	files 'build/libs/insurance-calculator-1.0.8.jar'
+	buildArgs(['JAR_FILE': "insurance-calculator-1.0.8.jar"])
 }

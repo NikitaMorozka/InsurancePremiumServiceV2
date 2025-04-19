@@ -1,0 +1,52 @@
+workspace {
+!identifiers hierarchical
+
+    model {
+        user = person "Клиент" "Использует приложение Travel Insurance Calculator."
+
+        insuranceSystem = softwareSystem "Insurance Calculator" {
+            webApp = container "Web Application" "Интерфейс для клиентов" "Thymeleaf"
+            api = container "Backend API" "Обрабатывает бизнес-логику, содержит базы данных" "Java / Spring Boot"
+            database = container "Database" "Хранит страховые полисы и коэффициенты расчётов." "MySQL" {
+                tags "database"
+            }
+            fileSystem = container "File Storage" "Хранит экспортированные полисы" "Накопитель" {
+                tags "fileStorage"
+            }
+
+            user -> webApp "Использует"
+            webApp -> api "JSON / HTTP"
+            api -> database "Читает и записывает полисы, хранит коэффициенты"
+            api -> fileSystem "Экспортирует полисы в виде файлов"
+        }
+    }
+
+    views {
+        container insuranceSystem "ContainerDiagram" {
+            include *
+            autoLayout lr
+            # fontSize 15
+        }
+
+        styles {
+            element "Container" {
+                background #438dd5
+                color #ffffff
+            }
+
+            element "Person" {
+                shape person
+                background #08427b
+                color #ffffff
+            }
+
+            element "database" {
+                shape cylinder
+            }
+
+            element "fileStorage" {
+                shape folder
+            }
+        }
+    }
+}

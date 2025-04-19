@@ -1,0 +1,35 @@
+workspace {
+
+    !identifiers hierarchical
+
+     model {
+        client = person "Client" "Пользователь, который хочет приобрести туристическую страховку."
+
+        broker = person "Broker" "Внешняя система, которая хочет продать нашу туристическую страховку"
+
+        softwareSystem = softwareSystem "Travel Insurance Calculator"
+
+        client -> softwareSystem "Использует систему web"
+
+        broker -> softwareSystem "Использует системный REST API"
+    }
+
+    views {
+        systemContext softwareSystem "SystemContext" {
+            include *
+            autoLayout
+        }
+
+        styles {
+            element "Software System" {
+                background #1168bd
+                color #ffffff
+            }
+            element "Person" {
+                shape person
+                background #08427b
+                color #ffffff
+            }
+        }
+    }
+}
