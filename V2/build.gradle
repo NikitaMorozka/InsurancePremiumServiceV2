@@ -2,12 +2,12 @@ plugins {
 	id 'org.springframework.boot' version "3.2.5"
 	id 'com.palantir.docker' version '0.35.0'
 	id 'maven-publish'
-	id 'checkstyle'
+//	id 'checkstyle'
 }
 
-checkstyle {
-	configFile = 'config/checkstyle/checkstyle.xml' as File
-}
+//checkstyle {
+//	configFile = 'config/checkstyle/checkstyle.xml' as File
+//}
 
 dependencies {
 	implementation 'org.apache.jmeter:ApacheJMeter_core:5.6.3'

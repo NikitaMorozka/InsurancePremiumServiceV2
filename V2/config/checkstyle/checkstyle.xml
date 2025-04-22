@@ -7,7 +7,7 @@
 -->
 <module name="Checker">
 <!--Все ошибки WARNING-->
-    <property name="severity" value="warning"/>
+<!--    <property name="severity" value="warning"/>-->
 
 
 
