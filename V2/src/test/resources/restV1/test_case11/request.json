@@ -1,11 +1,12 @@
 {
-  "personFirstName": "John",
-  "personLastName": "Doe",
-  "personCode":"1",
-  "dateOfBirth": "2026-01-23",
-  "agreementDateFrom": "2028-01-23",
-  "agreementDateTo": "2028-04-23",
-  "country": "JAPAN",
+  "personFirstName": "Максим",
+  "personLastName": "Комаров",
+  "personCode":"111-111",
+  "dateOfBirth": "2030-01-23",
+  "agreementDateFrom": "2026-01-23",
+  "agreementDateTo": "2027-01-23",
+  "country": "LATVIA",
   "medicalRiskLimitLevel": "LEVEL_15000",
-  "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION", "TRAVEL_LOSS_BAGGAGE"]
+  "travelCost": 1111,
+  "selected_risks":["TRAVEL_MEDICAL"]
 }

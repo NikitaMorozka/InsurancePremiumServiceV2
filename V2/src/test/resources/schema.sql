@@ -66,7 +66,7 @@ CREATE UNIQUE INDEX ix_unique_persons
 
 CREATE TABLE agreements (
                             id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                            uuid UUID NOT NULL UNIQUE,
+                            uuid BINARY(16) NOT NULL UNIQUE,
                             date_from DATE NOT NULL,
                             date_to DATE NOT NULL,
                             country VARCHAR(100) NOT NULL,
@@ -88,7 +88,9 @@ CREATE TABLE agreement_persons (
                                    id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                    agreement_id BIGINT NOT NULL,
                                    person_id BIGINT NOT NULL,
-                                   medical_risk_limit_level VARCHAR(100) NOT NULL
+                                   medical_risk_limit_level VARCHAR(100) NOT NULL,
+                                   travel_cost DECIMAL(10,2) NOT NULL
+
 );
 
 -- Создание уникального индекса на agreement_id и person_id
@@ -133,4 +135,10 @@ CREATE TABLE travel_cancellation_country_safety_rating (
                                     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                     country_ic VARCHAR(100) NOT NULL,
                                     coefficient DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE agreements_xml_export (
+                                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                       agreement_uuid BINARY(16) NOT NULL UNIQUE,
+                                       already_exported TINYINT NOT NULL
 );

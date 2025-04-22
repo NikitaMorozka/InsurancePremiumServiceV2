@@ -62,6 +62,7 @@ class AgreementSaverService {
         agreementPerson.setAgreement(agreement);
         agreementPerson.setPerson(person);
         agreementPerson.setMedicalRiskLimitLevel(personDTO.getMedicalRiskLimitLevel());
+        agreementPerson.setTravelCost(personDTO.getTravelCost());
         return agreementPersonsRepository.save(agreementPerson);
     }
 

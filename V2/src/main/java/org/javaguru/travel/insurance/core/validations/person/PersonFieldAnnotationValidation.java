@@ -27,7 +27,6 @@ class PersonFieldAnnotationValidation implements ValidationPersonList {
     public List<ValidationErrorDTO> validationList(AgreementDTO agreement, PersonDTO person) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-
         Set<ConstraintViolation<PersonDTO>> violations = validator.validate(person);
         if (violations.isEmpty()) {
             return List.of();
@@ -43,5 +42,4 @@ class PersonFieldAnnotationValidation implements ValidationPersonList {
             return errors;
         }
     }
-
 }

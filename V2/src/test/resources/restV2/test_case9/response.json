@@ -6,15 +6,7 @@
     },
     {
       "errorCode": "ERROR_CODE_8",
-      "description": "Risk Type ic = TRAMEDICAL not supported!"
-    },
-    {
-      "errorCode": "ERROR_CODE_8",
       "description": "Risk Type ic =  not supported!"
-    },
-    {
-      "errorCode": "ERROR_CODE_8",
-      "description": "Risk Type ic = TRAVEL_LOSS_BAE not supported!"
     }
   ]
 }

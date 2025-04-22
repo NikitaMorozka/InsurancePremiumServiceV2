@@ -1,8 +1,12 @@
 {
   "errors": [
     {
-      "errorCode": "ERROR_CODE_19",
-      "description": "Cost must not be null!"
+      "errorCode": "ERROR_CODE_22",
+      "description": "PersonFirstName [NIKITA] should contain only Russian letters"
+    },
+    {
+      "errorCode": "ERROR_CODE_23",
+      "description": "PersonLastName [MOROZOV] should contain only Russian letters"
     }
   ]
 }

@@ -1,14 +1,6 @@
 {
   "errors": [
     {
-      "errorCode": "ERROR_CODE_14",
-      "description": "MedicalRiskLimitLevel not in database!"
-    },
-    {
-      "errorCode": "ERROR_CODE_14",
-      "description": "MedicalRiskLimitLevel not in database!"
-    },
-    {
       "errorCode": "ERROR_CODE_13",
       "description": "MedicalRiskLimitLevel value not supported!"
     }

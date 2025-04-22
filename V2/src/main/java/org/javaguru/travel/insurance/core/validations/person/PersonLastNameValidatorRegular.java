@@ -21,7 +21,6 @@ class PersonLastNameValidatorRegular implements ValidationPersonOptional {
 
     @Override
     public Optional<ValidationErrorDTO> validationOptional(AgreementDTO agreementDTO, PersonDTO request) {
-        //return
         if (!validationIsNull(request) && !isValidFormat(request)) {
             Placeholder placeholder = new Placeholder("LAST_NAME", request.getPersonLastName());
             return Optional.of(errorsHandler.processing("ERROR_CODE_23", List.of(placeholder)));

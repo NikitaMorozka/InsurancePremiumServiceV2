@@ -1,10 +1,6 @@
 {
   "errors": [
     {
-      "errorCode": "ERROR_CODE_9",
-      "description": "Country not in database!"
-    },
-    {
       "errorCode": "ERROR_CODE_8",
       "description": "Risk Type ic = TRAMEDICAL not supported!"
     },

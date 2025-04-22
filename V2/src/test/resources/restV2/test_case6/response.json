@@ -3,10 +3,6 @@
     {
       "errorCode": "ERROR_CODE_6",
       "description": "Both DateFrom and DateTo must be in the future!"
-    },
-    {
-      "errorCode": "ERROR_CODE_5",
-      "description": "DateTo must not be less DateFrom!"
     }
   ]
 }

@@ -41,27 +41,3 @@ class TCAgeCoefficientCalculating {
     }
 
 }
-
-//    @Value("${medical.risk.age.coefficient.enabled}")
-//    private boolean medicalRiskAgeCoefficientEnabled;
-//
-//    private final TMAgeCoefficientRepository ageCoefficient;
-//
-//    public BigDecimal findAgeCoefficient(PersonDTO request) {
-//        return medicalRiskAgeCoefficientEnabled
-//                ? getAgeCoefficient(request)
-//                : getDefaultValue();
-//    }
-//
-//    private BigDecimal getAgeCoefficient(PersonDTO request) {
-//        int age = (int) ChronoUnit.YEARS.between(request.getPersonBirthDate(), LocalDate.now());
-//        return ageCoefficient.findByAgeCoefficient(age)
-//                .map(TMAgeCoefficient::getCoefficient)
-//                .orElseThrow(() ->
-//                        new RuntimeException("Coefficient not found = " + age));
-//    }
-//
-//
-//    private static BigDecimal getDefaultValue() {
-//        return BigDecimal.ONE;
-//    }

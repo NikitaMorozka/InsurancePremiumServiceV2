@@ -1,24 +1,24 @@
 {
-  "agreementDateFrom": "2028-01-23",
-  "agreementDateTo": "2028-04-23",
-  "country": "none",
-  "medicalRiskLimitLevel": "LEVEL_15000",
+  "agreementDateFrom" : "2030-05-25",
+  "agreementDateTo" : "2030-05-29",
+  "country" : "JAPAN",
   "selected_risks":["TRAMEDICAL", "TRAVEL_CANCEL", "TRAVEL_LOSS_BAE"],
-  "persons":[
-    {  "personFirstName": "John",
-      "personLastName": "Doe",
-      "dateOfBirth": "2002-01-23",
-      "personCode":"1",
-      "medicalRiskLimitLevel": "LEVEL_15000"
-
+  "persons" : [
+    {
+      "personFirstName" : "Никита",
+      "personLastName" : "Морозов",
+      "dateOfBirthDate": "2004-01-23",
+      "personCode" : "123-145",
+      "medicalRiskLimitLevel" : "LEVEL_10000",
+      "travelCost" : 100.00
     },
-
-    {  "personFirstName": "Никита",
-      "personLastName": "Морозов",
-      "dateOfBirth": "2004-01-23",
-      "personCode":"2",
-      "medicalRiskLimitLevel": "LEVEL_10000"
-
+    {
+      "personFirstName" : "Никита",
+      "personLastName" : "Морозов",
+      "dateOfBirthDate": "2000-01-23",
+      "personCode" : "126-145",
+      "medicalRiskLimitLevel" : "LEVEL_15000",
+      "travelCost" : 110.00
     }
   ]
 }

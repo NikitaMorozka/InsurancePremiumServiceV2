@@ -1,7 +1,12 @@
 plugins {
 	id 'org.springframework.boot' version "3.2.5"
-	id 'maven-publish'
 	id 'com.palantir.docker' version '0.35.0'
+	id 'maven-publish'
+	id 'checkstyle'
+}
+
+checkstyle {
+	configFile = 'config/checkstyle/checkstyle.xml' as File
 }
 
 dependencies {
@@ -70,10 +75,10 @@ dependencies {
 
 }
 
+
 jar {
 	enabled = false
 }
-//создание новой версии приложения
 //./gradlew bootJar
 //java -jar V2/build/libs/insurance-calculator-1.0.8.jar
 bootJar {

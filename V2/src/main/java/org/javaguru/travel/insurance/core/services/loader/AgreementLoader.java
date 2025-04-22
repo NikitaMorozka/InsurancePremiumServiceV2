@@ -49,9 +49,8 @@ class AgreementLoader {
             personDTO.setPersonLastName(person.getLastName());
             personDTO.setPersonBirthDate(person.getBirthDate());
             personDTO.setPersonCode(person.getPersonCode());
-
             personDTO.setMedicalRiskLimitLevel(agreementPerson.getMedicalRiskLimitLevel());
-
+            personDTO.setTravelCost(agreementPerson.getTravelCost());
             personDTO.setRisks(personRisksRepository.findByAgreementPerson(agreementPerson)
                     .stream().map(
                             personRisk -> {

@@ -5,18 +5,18 @@
   "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION"],
   "persons" : [
     {
-      "personFirstName" : "Vasja",
-      "personLastName" : "Pupkin",
+      "personFirstName" : "Никита",
+      "personLastName" : "Морозов",
       "dateOfBirthDate": "2004-01-23",
-      "personCode" : "123456-12345",
+      "personCode" : "123-123",
       "medicalRiskLimitLevel" : "LEVEL_10000",
       "travelCost" : 100.00
     },
     {
-      "personFirstName" : "Petja",
-      "personLastName" : "Pupkin",
+      "personFirstName" : "Никита",
+      "personLastName" : "Морозов",
       "dateOfBirthDate": "2000-01-23",
-      "personCode" : "123456-12345",
+      "personCode" : "456-345",
       "medicalRiskLimitLevel" : "LEVEL_15000",
       "travelCost" : 110.00
     }

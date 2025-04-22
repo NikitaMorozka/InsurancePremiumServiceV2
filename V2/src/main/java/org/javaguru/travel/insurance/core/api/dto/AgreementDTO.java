@@ -24,7 +24,6 @@ import java.util.UUID;
 @XmlRootElement
 
 @XmlAccessorType(XmlAccessType.FIELD)
-
 public class AgreementDTO {
 
     @XmlJavaTypeAdapter(LocalDateAdapter.class)

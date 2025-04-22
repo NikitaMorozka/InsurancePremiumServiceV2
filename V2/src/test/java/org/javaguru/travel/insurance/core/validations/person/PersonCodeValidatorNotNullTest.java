@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PersonCodeValidatorTest {
+class PersonCodeValidatorNotNullTest {
 
     @Mock private PersonDTO request;
     @Mock private AgreementDTO agreementDTO;
@@ -40,6 +40,7 @@ class PersonCodeValidatorTest {
     @DisplayName("Тест: персональный код не должен быть пустым (null)")
     void shouldReturnErrorWhenPersonCodeIsNull() {
         when(request.getPersonCode()).thenReturn(null);
+
         when(errorsHandler.processing("ERROR_CODE_15")).thenReturn(new ValidationErrorDTO("ERROR_CODE_15", "Field personCode is empty!"));
 
         Optional<ValidationErrorDTO> validateErrors = personCodeValidator.validationOptional(agreementDTO, request);

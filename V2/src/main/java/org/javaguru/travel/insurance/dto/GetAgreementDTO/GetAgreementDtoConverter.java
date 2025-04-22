@@ -64,12 +64,12 @@ public class GetAgreementDtoConverter { // написать тесты
 
     private PersonResponse buildPersonFromResponse(PersonDTO personDTO) {
         PersonResponse person = new PersonResponse();
-
         person.setPersonFirstName(personDTO.getPersonFirstName());
         person.setPersonLastName(personDTO.getPersonLastName());
         person.setPersonCode(personDTO.getPersonCode());
         person.setDateOfBirthDate(personDTO.getPersonBirthDate());
         person.setMedicalRiskLimitLevel(personDTO.getMedicalRiskLimitLevel());
+        person.setTravelCost(personDTO.getTravelCost());
 
         person.setPersonAgreementPremium(personDTO
                 .getRisks()

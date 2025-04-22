@@ -1,7 +1,7 @@
 {
-  "agreementDateFrom" : "2020-05-25",
-  "agreementDateTo" : "2020-05-29",
-  "country" : "SPAIN",
+  "agreementDateFrom" : "2030-05-25",
+  "agreementDateTo" : "2030-04-29",
+  "country" : "JAPAN",
   "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION"],
   "persons" : [
     {

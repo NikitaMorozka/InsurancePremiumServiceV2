@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 
-public class SelectedRisksPremiumCalculator {
+class SelectedRisksPremiumCalculator {
 
     private final List<TravelRiskPremiumCalculator> listRisks;
 

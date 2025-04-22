@@ -1,12 +1,12 @@
 {
-  "personFirstName": "Josh",
-  "personLastName": "Doe",
-  "personCode":"1",
+  "personFirstName": "Максим",
+  "personLastName": "Комаров",
+  "personCode":"111-111",
   "dateOfBirth": "2002-01-23",
   "agreementDateFrom": "2026-01-23",
-  "agreementDateTo": "2028-04-23",
+  "agreementDateTo": "2027-01-23",
   "country": "LATVIA",
-  "medicalRiskLimitLevel": "LEVEL_10000",
-  "travelCost":null,
-  "selected_risks":["TRAVEL_CANCELLATION", "TRAVEL_LOSS_BAGGAGE"]
+  "medicalRiskLimitLevel": "LEVEL_15000",
+  "travelCost": null,
+  "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION"]
 }

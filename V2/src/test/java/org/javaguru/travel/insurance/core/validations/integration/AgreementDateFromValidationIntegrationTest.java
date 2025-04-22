@@ -31,7 +31,7 @@ class AgreementDateFromValidationIntegrationTest {
         PersonDTO person = PersonDTO.builder()
                 .personFirstName("Никита")
                 .personLastName("Морозов")
-                .personCode("12341")
+                .personCode("123-441")
                 .personBirthDate(createDate("25.11.2002"))
                 .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
@@ -56,7 +56,7 @@ class AgreementDateFromValidationIntegrationTest {
         PersonDTO person = PersonDTO.builder()
                 .personFirstName("Никита")
                 .personLastName("Морозов")
-                .personCode("12341")
+                .personCode("123-441")
                 .personBirthDate(createDate("25.11.2002"))
                 .medicalRiskLimitLevel("LEVEL_20000")
                 .build();

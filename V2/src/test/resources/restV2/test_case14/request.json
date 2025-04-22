@@ -1,22 +1,24 @@
 {
-  "agreementDateFrom": "2026-01-23",
-  "agreementDateTo": "2028-04-23",
-  "country": "JAPAN",
-  "selected_risks":["TRAVEL_CANCELLATION"],
-  "persons":[
-    {  "personFirstName": "Никита",
-      "personLastName": "Морозов",
+  "agreementDateFrom" : "2030-05-25",
+  "agreementDateTo" : "2030-05-29",
+  "country" : "SPAIN",
+  "selected_risks":["TRAVEL_MEDICAL", "TRAVEL_CANCELLATION"],
+  "persons" : [
+    {
+      "personFirstName" : "NIKITA",
+      "personLastName" : "Морозов",
       "dateOfBirthDate": "2004-01-23",
-      "personCode":"1",
-      "medicalRiskLimitLevel": "LEVEL_10000",
-      "travelCost": 10340
+      "personCode" : "126-145",
+      "medicalRiskLimitLevel" : "LEVEL_10000",
+      "travelCost" : 100.00
     },
-    {  "personFirstName": "Никита",
-      "personLastName": "Морозов",
-      "dateOfBirthDate": "2004-01-23",
-      "personCode":"2",
-      "medicalRiskLimitLevel": "LEVEL_10000",
-      "travelCost": null
+    {
+      "personFirstName" : "Никита",
+      "personLastName" : "MOROZOV",
+      "dateOfBirthDate": "2000-01-23",
+      "personCode" : "126-145",
+      "medicalRiskLimitLevel" : "LEVEL_15000",
+      "travelCost" : 110.00
     }
   ]
 }

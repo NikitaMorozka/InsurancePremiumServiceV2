@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class TravelInsuranceControllerV1 {
 
     private final DtoV1Converter dtoV1Converter;
-
+    //http://localhost:8080/insurance/travel/web/v1
     @GetMapping("/insurance/travel/web/v1")
     public String showForm(ModelMap modelMap) {
         modelMap.addAttribute("request", new TravelCalculatePremiumRequestV1());

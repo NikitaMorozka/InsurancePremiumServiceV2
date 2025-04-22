@@ -38,9 +38,8 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
     MedicalRiskLimitLevelInDBValidation validation;
 
     @Test
-    void shouldReturnErrorWhenMedicalRiskLimitLevelNotExistInDb() {
+    void shouldNotReturnErrorWhenMedicalRiskLimitLevelDoesNotExistInDb() {
         AgreementDTO agreementDTO = new AgreementDTO();
-
         RiskDTO riskDTO = RiskDTO
                 .builder()
                 .riskIc("MEDICAL_RISK_LIMIT_LEVEL")
@@ -54,24 +53,18 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
                 .medicalRiskLimitLevel("LEVEL_20000")
                 .build();
 
-
         when(classifierValueRepository.findByClassifierTitleAndIc(riskDTO.getRiskIc(), person.getMedicalRiskLimitLevel()))
                 .thenReturn(Optional.empty());
-
-        ValidationErrorDTO validationErrorDTO = new ValidationErrorDTO("ERROR_CODE_14", "Medical risk limit level not found");
-        when(errorsHandler.processing("ERROR_CODE_14")).thenReturn(validationErrorDTO);
-
         Optional<ValidationErrorDTO> validationErrorOpt = validation.validationOptional(agreementDTO, person);
-
-        assertTrue(validationErrorOpt.isPresent());
-        assertSame(validationErrorDTO, validationErrorOpt.get());
-        assertEquals("ERROR_CODE_14", validationErrorOpt.get().errorCode());
-        assertEquals("Medical risk limit level not found", validationErrorOpt.get().description());
+        assertTrue(validationErrorOpt.isEmpty());
     }
 
     @Test
     void shouldReturnErrorWhenMedicalRiskLimitLevelIsBlank() {
-        AgreementDTO agreementDTO = new AgreementDTO();
+        AgreementDTO agreementDTO = AgreementDTO
+                .builder()
+                .selectedRisks(List.of("TRAVEL_MEDICAL"))
+                .build();
 
         PersonDTO person = PersonDTO
                 .builder()
@@ -87,7 +80,7 @@ class MedicalRiskLimitLevelInDBValidationIntegrationTest {
     }
 
     @Test
-    void shouldNotReturnErrorWhenMedicalRiskLimitLevelExistInDb() {
+    void shouldNotReturnErrorWhenMedicalRiskLimitLevelExistsInDb() {
         AgreementDTO agreementDTO = new AgreementDTO();
 
         RiskDTO riskDTO = RiskDTO

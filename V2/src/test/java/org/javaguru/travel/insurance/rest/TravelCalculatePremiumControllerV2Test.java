@@ -47,7 +47,7 @@ class TravelCalculatePremiumControllerV2Test {
     }
 
     static Stream<Arguments> jsonTestCases() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("restV1");
+        ClassPathResource classPathResource = new ClassPathResource("restV2");
         File dir = classPathResource.getFile();
         return Stream.of(Objects.requireNonNull(dir.listFiles(File::isDirectory)))
                 .map(File::getName)
