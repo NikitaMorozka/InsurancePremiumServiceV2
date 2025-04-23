@@ -1,0 +1,49 @@
+version: '3.8'
+
+networks:
+  insurance-network:
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: insurance-calculator-db
+    networks:
+      - insurance-network
+    ports:
+      - "3000:3306"
+
+  message-broker:
+    networks:
+      - insurance-network
+    container_name: rabbitmq-container
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+
+  insurance-calculator-app:
+    image: insurance-calculator:1.0.9
+    container_name: insurance-calculator
+    networks:
+      - insurance-network
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../export/agreements:/app/export/agreements
+    environment:
+      - AGREEMENT_EXPORT_PATH=/app
+      - SPRING_PROFILES_ACTIVE=mysql-container
+    depends_on:
+      - db
+      - message-broker
+
+
+
+
+#docker-compose up -d
+#docker-compose up
+
+#Для остановки всех контейнеров одной командой выполните: docker-compose down

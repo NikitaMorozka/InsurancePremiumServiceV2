@@ -1,1 +1,2 @@
-include 'V2'
+include 'insurance-calculator-app'
+include 'doc-generator-app'

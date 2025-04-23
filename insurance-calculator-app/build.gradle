@@ -1,0 +1,106 @@
+plugins {
+	id 'org.springframework.boot' version "3.2.5"
+	id 'com.palantir.docker' version '0.35.0'
+	id 'maven-publish'
+//	id 'checkstyle'
+
+}
+
+//checkstyle {
+//	configFile = 'config/checkstyle/checkstyle.xml' as File
+//}
+
+dependencies {
+	implementation 'org.apache.jmeter:ApacheJMeter_core:5.6.3'
+	implementation 'org.apache.jmeter:ApacheJMeter_components:5.6.3'
+	implementation 'kg.apc:jmeter-plugins-manager:1.9'
+	implementation 'kg.apc:jmeter-plugins-standard:1.4.0'
+	implementation 'kg.apc:jmeter-plugins-tst:2.3'
+	implementation 'org.apache.jmeter:ApacheJMeter_http:4.0'
+	testImplementation 'org.apache.logging.log4j:log4j-1.2-api:2.20.0'
+	implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6'
+	testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.2'
+	implementation 'org.slf4j:slf4j-api:1.7.25'
+	implementation 'commons-io:commons-io:2.11.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-amqp:3.2.4'
+
+
+	implementation('org.springframework.boot:spring-boot-starter-validation:3.2.5')
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
+	implementation('mysql:mysql-connector-java:8.0.22')
+	implementation('org.hibernate:hibernate-core:6.5.0.Final')
+	implementation ('org.liquibase:liquibase-core:4.27.0')
+
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa:3.2.5')
+	runtimeOnly 'com.h2database:h2:2.2.224'
+
+	implementation('org.springframework.boot:spring-boot-starter-web:3.2.5')
+	//шабллонизатор
+	implementation('org.springframework.boot:spring-boot-starter-thymeleaf:3.2.5')
+
+	implementation('com.fasterxml.jackson.core:jackson-core:2.14.2')
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
+	implementation('com.google.guava:guava:31.0.1-jre')
+
+	compileOnly('org.projectlombok:lombok:1.18.32')
+	annotationProcessor('org.projectlombok:lombok:1.18.32')
+
+	implementation 'ch.qos.logback:logback-classic:0.9.26'
+
+	testCompileOnly('org.projectlombok:lombok:1.18.32')
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.32')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test:3.2.5')
+
+	testImplementation 'org.mockito:mockito-core:5.15.2'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.15.2'
+
+	testImplementation('com.h2database:h2:2.2.224')
+
+	testImplementation('org.hamcrest:hamcrest:2.2')
+
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.0'
+
+	testImplementation('uk.org.webcompere:model-assert:1.0.0')
+
+
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+
+	test {
+		useJUnitPlatform()
+	}
+
+}
+
+
+jar {
+	enabled = false
+}
+
+task dockerPrepareCustom(type: Copy) {
+	dependsOn bootJar  // Указываем зависимость от bootJar
+	from "build/libs"
+	into "build/docker"
+	include "insurance-calculator-1.0.9.jar"
+}
+
+docker {
+	dependsOn dockerPrepareCustom // Указываем зависимость на dockerPrepareCustom
+	files 'build/docker/insurance-calculator-1.0.9.jar'
+	buildArgs(['JAR_FILE': 'insurance-calculator-1.0.9.jar'])
+}
+//./gradlew bootJar
+//java -jar V2/build/libs/insurance-calculator-1.0.8.jar
+bootJar {
+	enabled = true
+	archiveBaseName = 'insurance-calculator'
+	archiveVersion = '1.0.9'
+}
+
+
+
