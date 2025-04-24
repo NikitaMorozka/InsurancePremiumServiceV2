@@ -25,14 +25,14 @@ services:
 
 
   insurance-calculator-app:
-    image: insurance-calculator:1.0.9
+    image: insurance-calculator-app:1.0.9
     container_name: insurance-calculator
     networks:
       - insurance-network
     ports:
       - "8080:8080"
     volumes:
-      - ../export/agreements:/app/export/agreements
+      - ./export/agreements:/app/export/agreements
     environment:
       - AGREEMENT_EXPORT_PATH=/app
       - SPRING_PROFILES_ACTIVE=mysql-container
@@ -40,7 +40,21 @@ services:
       - db
       - message-broker
 
+  doc-generator-app:
+    image: doc-generator-app:1.0.9  # Исправлено имя образа
+    container_name: doc-generator-container
+    networks:
+      - insurance-network
+    ports:
+      - "8081:8080"
+    volumes:
+      - /Users/a---/Desktop/My files/intelliJ IDEA FILE/InsurancePremiumServiceV2/doc-generator-app/docs/proposals:/app/docs/proposals
+    depends_on:
+      - message-broker
 
+
+#docker build -t doc-generator-app:1.0.9 .
+#docker build -t insurance-calculator-app:1.0.9 .
 
 
 #docker-compose up -d

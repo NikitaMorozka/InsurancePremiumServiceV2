@@ -13,6 +13,8 @@ checkstyle {
 */
 
 dependencies {
+	implementation("org.apache.pdfbox:pdfbox:2.0.1")
+
 
 	implementation('org.springframework.boot:spring-boot-starter-web:3.2.5')
 
@@ -33,6 +35,7 @@ dependencies {
 
 	testImplementation('uk.org.webcompere:model-assert:1.0.0')
 
+
 	test {
 		useJUnitPlatform()
 	}
@@ -43,16 +46,45 @@ jar {
 	enabled = false
 }
 
+
 bootJar {
 	enabled = true
 	archiveBaseName = 'doc-generator'
-	archiveVersion = '1.0.2'
+	archiveVersion = '1.0.9'
 }
 
 docker {
 	dependsOn bootJar
-	name "doc-generator:1.0.2"
-	files 'build/libs/doc-generator-1.0.2.jar'
+	name "doc-generator:1.0.9"
+	files bootJar.archiveFile  // <-- Важно!
+//	files 'build/libs/doc-generator-1.0.9.jar'
 	files 'wait-for-it.sh'
-	buildArgs(['JAR_FILE': "doc-generator-1.0.2.jar"])
+	buildArgs(['JAR_FILE': bootJar.archiveFileName.get()])
+//
+//	buildArgs(['JAR_FILE': "doc-generator-1.0.9.jar"])
 }
+
+//task dockerPrepareCustom(type: Copy) {
+//	dependsOn bootJar  // Указываем зависимость от bootJar
+//	from "build/libs"
+//	into "build/docker"
+//	include "doc-generator-1.0.9.jar"
+//}
+//
+//bootJar {
+//	enabled = true
+//	archiveBaseName = 'doc-generator'
+//	archiveVersion = '1.0.9'
+//}
+//
+//docker {
+//	dependsOn dockerPrepareCustom
+//	files 'build/libs/doc-generator-1.0.9.jar'
+//	files 'wait-for-it.sh'
+//	buildArgs(['JAR_FILE': "doc-generator-1.0.9.jar"])
+//}
+
+
+
+//./gradlew bootJar
+//java -jar V2/build/libs/insurance-calculator-1.0.8.jar

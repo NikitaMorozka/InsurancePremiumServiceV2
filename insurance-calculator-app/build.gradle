@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version "3.2.5"
 	id 'com.palantir.docker' version '0.35.0'
 	id 'maven-publish'
+
 //	id 'checkstyle'
 
 }
@@ -82,6 +83,28 @@ jar {
 	enabled = false
 }
 
+
+
+//bootJar {
+//	enabled = true
+//	archiveBaseName = 'insurance-calculator'
+//	archiveVersion = '1.0.9'
+//}
+//
+//docker {
+//	dependsOn bootJar
+//	name "insurance-calculator:1.0.9"
+//	files bootJar.archiveFile  // Это важно! Убедитесь, что путь верный
+//	files 'wait-for-it.sh'  // Убедитесь, что этот файл существует в проекте
+//	buildArgs(['JAR_FILE': bootJar.archiveFileName.get()])  // Параметры для Docker
+//}
+
+//	files 'build/libs/doc-generator-1.0.9.jar'
+
+//	buildArgs(['JAR_FILE': "doc-generator-1.0.9.jar"])
+
+
+
 task dockerPrepareCustom(type: Copy) {
 	dependsOn bootJar  // Указываем зависимость от bootJar
 	from "build/libs"
@@ -90,10 +113,12 @@ task dockerPrepareCustom(type: Copy) {
 }
 
 docker {
-	dependsOn dockerPrepareCustom // Указываем зависимость на dockerPrepareCustom
-	files 'build/docker/insurance-calculator-1.0.9.jar'
-	buildArgs(['JAR_FILE': 'insurance-calculator-1.0.9.jar'])
+	dependsOn dockerPrepareCustom
+	files 'build/libs/insurance-calculator-1.0.9.jar'
+	files 'wait-for-it.sh'
+	buildArgs(['JAR_FILE': "insurance-calculator-1.0.9.jar"])
 }
+
 //./gradlew bootJar
 //java -jar V2/build/libs/insurance-calculator-1.0.8.jar
 bootJar {

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Profile({"h2", "mysql-local"})
 class ProposalGeneratorQueueSenderStubImpl implements ProposalGeneratorQueueSender {
-    private static final Logger logger = LoggerFactory.getLogger(ProposalGeneratorQueueSenderStubImpl.class);
 
+    private static final Logger logger = LoggerFactory.getLogger(ProposalGeneratorQueueSenderStubImpl.class);
 
     @Override
     public void send(AgreementDTO agreement) {
