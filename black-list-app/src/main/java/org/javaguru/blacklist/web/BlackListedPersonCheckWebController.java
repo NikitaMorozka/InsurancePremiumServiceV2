@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.javaguru.blacklist.core.api.command.BlackListedPersonCoreCommand;
 import org.javaguru.blacklist.core.api.command.BlackListedPersonCoreResult;
-import org.javaguru.blacklist.core.services.сheck.BlackListedPersonService;
+import org.javaguru.blacklist.core.services.check.BlackListedPersonService;
 import org.javaguru.blacklist.dto.check.BlackListedPersonCheckRequest;
 import org.javaguru.blacklist.dto.check.BlackListedPersonCheckResponse;
 import org.javaguru.blacklist.rest.check.DtoCheckConverter;

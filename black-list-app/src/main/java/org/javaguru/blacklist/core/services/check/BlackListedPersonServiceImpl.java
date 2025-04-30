@@ -1,4 +1,4 @@
-package org.javaguru.blacklist.core.services.сheck;
+package org.javaguru.blacklist.core.services.check;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
