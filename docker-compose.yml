@@ -2,17 +2,8 @@ version: '3.8'
 
 networks:
   insurance-network:
+
 services:
-  db:
-    image: mysql:8.0
-    container_name: mysql-container
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: insurance-calculator-db
-    networks:
-      - insurance-network
-    ports:
-      - "3000:3306"
 
   message-broker:
     networks:
@@ -23,6 +14,17 @@ services:
       - "5672:5672"
       - "15672:15672"
 
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - ./mysql-database-init:/docker-entrypoint-initdb.d
+    networks:
+      - insurance-network
+    ports:
+      - "3000:3306"
 
   insurance-calculator-app:
     image: insurance-calculator-app:1.0.9
@@ -41,7 +43,7 @@ services:
       - message-broker
 
   doc-generator-app:
-    image: doc-generator-app:1.0.9  # Исправлено имя образа
+    image: doc-generator-app:1.0.9
     container_name: doc-generator-container
     networks:
       - insurance-network
@@ -49,15 +51,26 @@ services:
       - "8081:8080"
     volumes:
       - /Users/a---/Desktop/My files/intelliJ IDEA FILE/InsurancePremiumServiceV2/doc-generator-app/docs/proposals:/app/docs/proposals
+      - ./doc-generator-app/docs/proposals:/app/docs/proposals
     depends_on:
       - message-broker
 
+  black-list-app:
+    image: black-list-app:1.0.9
+    container_name: black-list-container
+    networks:
+      - insurance-network
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
 
+
+
+
+#docker build -t black-list-app:1.0.9 .
 #docker build -t doc-generator-app:1.0.9 .
 #docker build -t insurance-calculator-app:1.0.9 .
-
-
 #docker-compose up -d
 #docker-compose up
-
-#Для остановки всех контейнеров одной командой выполните: docker-compose down
+#docker-compose down

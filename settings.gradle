@@ -1,2 +1,3 @@
 include 'insurance-calculator-app'
 include 'doc-generator-app'
+include 'black-list-app'

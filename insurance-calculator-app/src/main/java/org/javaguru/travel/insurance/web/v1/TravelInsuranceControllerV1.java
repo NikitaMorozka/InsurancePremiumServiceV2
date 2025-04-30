@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-
 public class TravelInsuranceControllerV1 {
 
     private final DtoV1Converter dtoV1Converter;

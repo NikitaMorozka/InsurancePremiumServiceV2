@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blacklisted Person Check</title>
+</head>
+<body>
+
+<h1>Check if Person is Blacklisted</h1>
+
+<form action="/blacklist/person/check/web" th:object="${request}" method="post">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+    <label for="personFirstName">First Name:</label>
+    <input type="text" id="personFirstName" th:field="*{personFirstName}" required><br><br>
+
+    <label for="personLastName">Last Name:</label>
+    <input type="text" id="personLastName" th:field="*{personLastName}" required><br><br>
+
+    <label for="personCode">Person Code:</label>
+    <input type="text" id="personCode" th:field="*{personCode}" required><br><br>
+
+    <button type="submit">Check</button>
+</form>
+
+<!-- Кнопка очистки формы -->
+<button onclick="window.location.href='/blacklist/person/check/web';">Clear Form</button>
+
+<form action="/blacklist/persons/get/web" method="get" style="margin-top: 20px;">
+    <button type="submit">View All Blacklisted Persons</button>
+</form>
+
+
+<!-- Отображение ошибок -->
+<div th:if="${response.errors != null}">
+    <h3>Validation Errors</h3>
+    <ul>
+        <li th:each="error : ${response.errors}">
+            <span th:text="${error.errorCode} + ' - ' + ${error.description}"></span>
+        </li>
+    </ul>
+</div>
+
+<!-- Отображение результата -->
+<div th:if="${response.blacklisted != null}">
+    <h3>Result:</h3>
+    <p th:if="${response.blacklisted}" style="color: red;">This person is <strong>BLACKLISTED</strong>.</p>
+    <p th:if="${!response.blacklisted}" style="color: green;">This person is <strong>NOT blacklisted</strong>.</p>
+</div>
+
+</body>
+</html>

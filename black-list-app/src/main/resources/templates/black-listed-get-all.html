@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Blacklisted Persons</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>List of All Blacklisted Persons</h1>
+
+<form action="/blacklist/persons/get/web" method="post">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+    <button type="submit">Get All Blacklisted Persons</button>
+</form>
+
+<br/>
+
+<div th:if="${response != null}">
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Person Code</th>
+            <th>Удалить</th> <!-- новая колонка -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${response.persons}" th:attr="data-id=${person.id}">
+            <td th:text="${person.personFirstName}">First Name</td>
+            <td th:text="${person.personLastName}">Last Name</td>
+            <td th:text="${person.personCode}">Person Code</td>
+            <td style="text-align: center;">
+                <button type="button" onclick="deletePerson(this)">
+                    ✅
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function deletePerson(button) {
+        const row = button.closest("tr");
+        const personId = row.getAttribute("data-id");
+
+        fetch("/blacklist/person/delete/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id: personId })
+        })
+            .then(response => {
+                if (response.ok) {
+                    row.remove(); // удаляем строку из таблицы
+                    alert("Пользователь удалён");
+                } else {
+                    alert("Ошибка при удалении");
+                }
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+                alert("Ошибка при удалении");
+            });
+    }
+</script>
+
+
+</body>
+</html>

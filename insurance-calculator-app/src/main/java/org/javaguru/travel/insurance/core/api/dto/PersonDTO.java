@@ -22,6 +22,8 @@ import java.util.List;
 @Builder
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
+
+
 public class PersonDTO {
 
     @Size(max = 200)
