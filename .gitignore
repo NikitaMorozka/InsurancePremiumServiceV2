@@ -6,6 +6,8 @@ doc-generator-app/docs/
 *.*~
 *.swp
 *.swo
+*.bak
+*.tmp
 
 # Java-specific
 *.class
@@ -26,6 +28,7 @@ jmeterdata/
 build/
 logs/
 out/
+target/
 
 # IntelliJ IDEA
 .idea/
@@ -42,6 +45,5 @@ out/
 .springBeans
 
 # Дополнительно: игнорировать другие временные файлы
-target/
-*.bak
-*.tmp
+*.hprof  # Файлы профилирования JVM
+test-output/  # Результаты тестов
