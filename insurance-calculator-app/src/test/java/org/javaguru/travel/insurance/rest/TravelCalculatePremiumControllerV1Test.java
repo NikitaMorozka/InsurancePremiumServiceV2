@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.rest;
 
+import org.javaguru.travel.insurance.dto.v1.DtoV1Converter;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -31,7 +32,8 @@ class TravelCalculatePremiumControllerV1Test {
     private MockMvc mockMvc;
     @Autowired
     private JsonFileReader jsonFileReader;
-
+    @Autowired
+    private DtoV1Converter dtoV1Converter;
     @ParameterizedTest
     @MethodSource({"jsonTestCases"})
     void controllerTest(String testCase) throws Exception {

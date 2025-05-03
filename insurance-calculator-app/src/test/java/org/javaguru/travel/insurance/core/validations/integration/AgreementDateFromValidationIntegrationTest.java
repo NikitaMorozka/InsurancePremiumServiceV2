@@ -40,6 +40,7 @@ class AgreementDateFromValidationIntegrationTest {
                 .agreementDateFrom(null)
                 .agreementDateTo(createDate("01.01.2030"))
                 .country("SPAIN")
+                .exportPDF(false)
                 .selectedRisks(List.of("TRAVEL_MEDICAL"))
                 .persons(List.of(person))
                 .build();
@@ -65,6 +66,7 @@ class AgreementDateFromValidationIntegrationTest {
                 .agreementDateFrom(createDate("01.01.2020"))
                 .agreementDateTo(createDate("01.01.2030"))
                 .country("SPAIN")
+                .exportPDF(false)
                 .selectedRisks(List.of("TRAVEL_MEDICAL"))
                 .persons(List.of(person))
                 .build();

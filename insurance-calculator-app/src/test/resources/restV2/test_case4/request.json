@@ -2,6 +2,7 @@
   "agreementDateFrom" : "2030-05-25",
   "agreementDateTo" : "2030-05-29",
   "country" : "SPAIN",
+  "exportPDF" : "false",
   "selected_risks":[],
   "persons" : [
     {

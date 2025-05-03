@@ -1,33 +1,47 @@
+# Игнорировать указанные директории
+export/
+doc-generator-app/docs/
+
+# Игнорировать временные файлы
 *.*~
-#java specific
+*.swp
+*.swo
+
+# Java-specific
 *.class
 *.jar
-# without gradle-wrapper.jar our build will fail
+# Исключение для gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.jar
 
-#log specific
+# Log files
 *.log
-V2/jmeterdata/
-InsurancePremiumServiceV2/export/
-#Mac
+jmeterdata/
+
+# Mac-specific
+.DS_Store
 **/.DS_Store
 
-### Gradle ###
-.gradle
-**/build/
-**/logs/
-**/out/
+# Gradle
+.gradle/
+build/
+logs/
+out/
 
-### STS ###
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Spring Tool Suite (STS) / Eclipse
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 
-### IntelliJ IDEA ###
-**/.idea
-*.iws
-*.iml
-*.ipr
+# Дополнительно: игнорировать другие временные файлы
+target/
+*.bak
+*.tmp

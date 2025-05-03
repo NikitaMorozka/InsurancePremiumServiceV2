@@ -70,6 +70,7 @@ CREATE TABLE agreements (
                             date_from DATE NOT NULL,
                             date_to DATE NOT NULL,
                             country VARCHAR(100) NOT NULL,
+                            exportPDF TINYINT NOT NULL,
                             premium DECIMAL(10,2) NOT NULL
 );
 
@@ -142,3 +143,16 @@ CREATE TABLE agreements_xml_export (
                                        agreement_uuid BINARY(16) NOT NULL UNIQUE,
                                        already_exported TINYINT NOT NULL
 );
+
+CREATE TABLE agreement_proposals (
+                                     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                     agreement_uuid BINARY(16) NOT NULL,
+                                     already_generated CHAR(1) NOT NULL,
+                                     proposal_file_path VARCHAR(255) NOT NULL,
+                                     UNIQUE (agreement_uuid)
+);
+
+ALTER TABLE agreement_proposals
+    ADD CONSTRAINT fk_agreement_proposals_agreement_uuid
+        FOREIGN KEY (agreement_uuid)
+            REFERENCES agreements (uuid);

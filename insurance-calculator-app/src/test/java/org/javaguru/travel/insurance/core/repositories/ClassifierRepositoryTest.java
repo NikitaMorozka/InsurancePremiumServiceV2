@@ -13,7 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@ExtendWith(SpringExtension.class)//: Интегрирует Spring с JUnit 5, чтобы использовать аннотации вроде @Autowired.
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 class ClassifierRepositoryTest {
 

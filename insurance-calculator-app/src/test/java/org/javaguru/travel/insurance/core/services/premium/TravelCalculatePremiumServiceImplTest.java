@@ -47,11 +47,11 @@ class TravelCalculatePremiumServiceImplTest {
         verifyNoInteractions(totalPremiumAgreement, calculateRisksForPremium);
     }
 
-//
     @Test
     void shouldCalculatePersonsPremium() {
         var command = new TravelCalculatePremiumCoreCommand(new AgreementDTO());
         var savedAgreement = new Agreement();
+        savedAgreement.setExportPDF(false);
 
         savedAgreement.setUuid(UUID.randomUUID());
         when(agreementSaverService.save(any(AgreementDTO.class))).thenReturn(savedAgreement);
@@ -59,9 +59,7 @@ class TravelCalculatePremiumServiceImplTest {
 
         travelCalculatePremiumService.calculatePremium(command);
         verify(totalPremiumAgreement).calculateTotalAgreementPremium(command.getAgreement());
-
     }
-
 
     @Test
     void shouldCalculateAgreementTotalPremium() {
@@ -69,7 +67,7 @@ class TravelCalculatePremiumServiceImplTest {
         var savedAgreement = new Agreement();
 
         savedAgreement.setUuid(UUID.randomUUID());
-
+        savedAgreement.setExportPDF(false);
         when(agreementSaverService.save(any(AgreementDTO.class))).thenReturn(savedAgreement);
         when(agreementValidator.validate(any(AgreementDTO.class))).thenReturn(Collections.emptyList());
         when(totalPremiumAgreement.calculateTotalAgreementPremium(any(AgreementDTO.class))).thenReturn(BigDecimal.ONE);

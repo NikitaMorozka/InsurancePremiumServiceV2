@@ -6,6 +6,7 @@
   "agreementDateFrom": "",
   "agreementDateTo": "2028-04-23",
   "country": "LATVIA",
+  "exportPDF" : "false",
   "medicalRiskLimitLevel": "LEVEL_15000",
   "travelCost": 1111,
   "selected_risks":["TRAVEL_MEDICAL"]
