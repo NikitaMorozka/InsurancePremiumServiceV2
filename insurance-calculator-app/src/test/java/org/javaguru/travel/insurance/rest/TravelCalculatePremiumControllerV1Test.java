@@ -24,8 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith(SpringExtension.class) // запуск спринг теста
-
+@ExtendWith(SpringExtension.class)
 class TravelCalculatePremiumControllerV1Test {
 
     @Autowired
@@ -35,8 +34,6 @@ class TravelCalculatePremiumControllerV1Test {
 
     @ParameterizedTest
     @MethodSource({"jsonTestCases"})
-
-
     void controllerTest(String testCase) throws Exception {
         String request = String.format("restV1/%s/request.json", testCase);
         String response = String.format("restV1/%s/response.json", testCase);
@@ -48,8 +45,6 @@ class TravelCalculatePremiumControllerV1Test {
                 .andReturn();
     }
 
-
-
     static Stream<Arguments> jsonTestCases() throws IOException {
         ClassPathResource classPathResource = new ClassPathResource("restV1");
         File dir = classPathResource.getFile();
@@ -58,6 +53,4 @@ class TravelCalculatePremiumControllerV1Test {
                 .sorted()
                 .map(Arguments::of);
     }
-
-
 }

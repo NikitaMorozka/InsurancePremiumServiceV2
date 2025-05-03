@@ -34,7 +34,9 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
             calculatePremium(command.getAgreement());
             Agreement agreement =  agreementSaverService.save(command.getAgreement());
             command.getAgreement().setUuid(agreement.getUuid());
-            proposalGeneratorQueueSender.send(command.getAgreement());
+            if (agreement.getExportPDF()) {
+                proposalGeneratorQueueSender.send(command.getAgreement()); //вот здесь он вызывается
+            }
             return buildResponse(command.getAgreement());
         }
         return new TravelCalculatePremiumCoreResult(errors);

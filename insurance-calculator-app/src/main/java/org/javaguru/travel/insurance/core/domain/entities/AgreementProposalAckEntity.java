@@ -22,7 +22,7 @@ public class AgreementProposalAckEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "agreement_uuid", nullable = false)
+    @Column(name = "agreement_uuid",  nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID agreementUuid;
 
     @Column(name = "already_generated", nullable = false)

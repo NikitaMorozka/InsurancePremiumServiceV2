@@ -52,6 +52,7 @@ public class GetAgreementDtoConverter { // написать тесты
         response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
         response.setAgreementPremium(agreement.getAgreementPremium());
+        response.setExportPDF(agreement.getExportPDF());
 
         response.setPersons(agreement
                 .getPersons()

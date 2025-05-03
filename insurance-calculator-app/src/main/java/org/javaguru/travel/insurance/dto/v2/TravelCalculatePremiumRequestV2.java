@@ -27,6 +27,8 @@ public class TravelCalculatePremiumRequestV2 {
 
     private String country;
 
+    private Boolean exportPDF;
+
     @JsonAlias("selected_risks") private List<String> selectedRisks;
 
     @JsonAlias("persons") private List<PersonRequest> persons;

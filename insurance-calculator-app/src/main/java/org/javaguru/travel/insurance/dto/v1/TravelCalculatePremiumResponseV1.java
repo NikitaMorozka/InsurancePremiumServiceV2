@@ -40,6 +40,8 @@ public class TravelCalculatePremiumResponseV1 extends CoreResponse {
 
     private String country;
 
+    private Boolean exportPDF;
+
     private String medicalRiskLimitLevel;
 
     private BigDecimal travelCost;

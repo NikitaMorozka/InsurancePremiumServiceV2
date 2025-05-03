@@ -1,51 +1,215 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Blacklisted Person Check</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверить клиента</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fc;
+            margin: 0;
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        form {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: white;
+        }
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .secondary-button {
+            background-color: #95a5a6;
+        }
+        .secondary-button:hover {
+            background-color: #7f8c8d;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+        .errors, .results {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 6px solid;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        .errors { border-color: #e74c3c; }
+        .results { border-color: #3498db; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #34495e;
+        }
+        h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+        p.blacklisted {
+            color: #e74c3c;
+        }
+        p.not-blacklisted {
+            color: #2ecc71;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Check if Person is Blacklisted</h1>
+<button onclick="window.location.href='http://localhost:8080/index'" class="secondary-button back-button">
+    ← Назад на главную
+</button>
 
-<form action="/blacklist/person/check/web" th:object="${request}" method="post">
-<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+<h1>Проверить клиента в черном списке</h1>
+
+<form id="checkForm" action="/blacklist/person/check/web" th:object="${request}" method="post" onsubmit="return validateForm(event)">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <label for="personFirstName">First Name:</label>
-    <input type="text" id="personFirstName" th:field="*{personFirstName}" required><br><br>
-
+    <input type="text" id="personFirstName" th:field="*{personFirstName}">
     <label for="personLastName">Last Name:</label>
-    <input type="text" id="personLastName" th:field="*{personLastName}" required><br><br>
-
-    <label for="personCode">Person Code:</label>
-    <input type="text" id="personCode" th:field="*{personCode}" required><br><br>
-
-    <button type="submit">Check</button>
+    <input type="text" id="personLastName" th:field="*{personLastName}">
+    <label for="personCode">Person Code (xxx-xxx):</label>
+    <input type="text" id="personCode" th:field="*{personCode}" pattern="[0-9]{3}-[0-9]{3}" oninput="formatPersonCode(this)">
+    <div class="button-group">
+        <button type="submit">Check</button>
+        <button type="button" class="secondary-button" onclick="window.location.href='/blacklist/person/check/web';">
+            Clear Form
+        </button>
+    </div>
 </form>
 
-<!-- Кнопка очистки формы -->
-<button onclick="window.location.href='/blacklist/person/check/web';">Clear Form</button>
-
-<form action="/blacklist/persons/get/web" method="get" style="margin-top: 20px;">
-    <button type="submit">View All Blacklisted Persons</button>
-</form>
-
-
-<!-- Отображение ошибок -->
-<div th:if="${response.errors != null}">
-    <h3>Validation Errors</h3>
-    <ul>
-        <li th:each="error : ${response.errors}">
-            <span th:text="${error.errorCode} + ' - ' + ${error.description}"></span>
-        </li>
-    </ul>
-</div>
-
-<!-- Отображение результата -->
-<div th:if="${response.blacklisted != null}">
+<div class="results" th:if="${response.blacklisted != null}">
     <h3>Result:</h3>
-    <p th:if="${response.blacklisted}" style="color: red;">This person is <strong>BLACKLISTED</strong>.</p>
-    <p th:if="${!response.blacklisted}" style="color: green;">This person is <strong>NOT blacklisted</strong>.</p>
+    <p th:if="${response.blacklisted}" class="blacklisted">This person is <strong>BLACKLISTED</strong>.</p>
+    <p th:if="${!response.blacklisted}" class="not-blacklisted">This person is <strong>NOT blacklisted</strong>.</p>
 </div>
+
+<div class="errors" th:if="${response.errors != null}">
+    <h3>Validation Errors</h3>
+    <table>
+        <tr th:each="error : ${response.errors}">
+            <td th:text="${error.errorCode}"></td>
+            <td th:text="${error.description}"></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function formatPersonCode(input) {
+        let value = input.value.replace(/[^0-9-]/g, '');
+        let digits = value.replace(/[^0-9]/g, '').slice(0, 6);
+        if (digits.length > 3) {
+            value = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+        } else {
+            value = digits;
+        }
+        input.value = value;
+    }
+
+    function validateForm(event) {
+        event.preventDefault();
+        const form = document.getElementById("checkForm");
+        const personCode = document.getElementById("personCode").value;
+        const pattern = /^[0-9]{3}-[0-9]{3}$/;
+        if (!pattern.test(personCode)) {
+            alert("Person Code должен быть в формате xxx-xxx");
+            return false;
+        }
+
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            credentials: 'include',
+            headers: {
+                "Accept": "text/html",
+                "Authorization": "Basic " + btoa("admin:admin")
+            }
+        })
+            .then(response => {
+                console.log("Response status:", response.status);
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error("Ошибка: " + response.status);
+                }
+            })
+            .then(html => {
+                document.open();
+                document.write(html);
+                document.close();
+            })
+            .catch(error => {
+                console.error("Ошибка отправки формы:", error);
+                alert("Ошибка отправки формы: " + error.message);
+            });
+
+        return false;
+    }
+</script>
 
 </body>
 </html>

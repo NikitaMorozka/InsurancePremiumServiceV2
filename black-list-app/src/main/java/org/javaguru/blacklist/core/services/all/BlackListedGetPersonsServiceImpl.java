@@ -18,7 +18,6 @@ class BlackListedGetPersonsServiceImpl implements BlackListedGetPersonsService {
 
     private final BlackListedPersonEntityRepository repository;
 
-    //добить валидацию на пустой список персонов
     @Override
     public BlackListedPersonsListCoreResult getAllBlackListedPersons(BlackListedPersonsListCoreCommand command) {
         List<BlackListedPersonEntity> entities = repository.findAllBlackListedPersons();
@@ -26,7 +25,6 @@ class BlackListedGetPersonsServiceImpl implements BlackListedGetPersonsService {
         List<BlackListedPersonDTO> personDTOs = entities.stream()
                 .map(this::loadBlackListedPersonDTO)
                 .collect(Collectors.toList());
-
         return new BlackListedPersonsListCoreResult(personDTOs);
     }
 

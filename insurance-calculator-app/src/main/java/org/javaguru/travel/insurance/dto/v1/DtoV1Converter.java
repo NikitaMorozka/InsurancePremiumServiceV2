@@ -56,6 +56,7 @@ public class DtoV1Converter { //написать тесты
         response.setAgreementDateTo(agreement.getAgreementDateTo());
         response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
+        response.setExportPDF(agreement.getExportPDF());
         response.setMedicalRiskLimitLevel(agreement.getPersons().getFirst().getMedicalRiskLimitLevel());
         response.setTravelCost(agreement.getPersons().getFirst().getTravelCost());
         response.setAgreementPremium(agreement.getAgreementPremium());
@@ -73,6 +74,7 @@ public class DtoV1Converter { //написать тесты
         agreement.setAgreementDateTo(request.getAgreementDateTo());
         agreement.setCountry(request.getCountry());
         agreement.setSelectedRisks(request.getSelectedRisks());
+        agreement.setExportPDF(request.getExportPDF());
         PersonDTO person = buildPerson(request);
         agreement.setPersons(List.of(person));
 

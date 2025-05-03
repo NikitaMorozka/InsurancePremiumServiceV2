@@ -22,7 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @XmlRootElement
-
+//вариант добавить boolean export, который будет экпортровать
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AgreementDTO {
 
@@ -36,6 +36,8 @@ public class AgreementDTO {
     private UUID uuid;
 
     private String country;
+
+    private Boolean exportPDF;
 
     @XmlElementWrapper(name = "selectedRisks")
     @XmlElement(name = "risk")

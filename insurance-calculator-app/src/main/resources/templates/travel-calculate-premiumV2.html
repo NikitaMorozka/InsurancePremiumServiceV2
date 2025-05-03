@@ -2,114 +2,568 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Travel Insurance Premium Calculation</title>
-    <script>
-        function addPerson() {
-            const personsContainer = document.getElementById("personsContainer");
-
-            const personIndex = personsContainer.children.length;
-
-            const personDiv = document.createElement("div");
-            personDiv.className = "person-block";
-
-            personDiv.innerHTML = `
-                <h3>Person ${personIndex + 1}</h3>
-
-                <label for="personFirstName${personIndex}">First Name:</label>
-                <input type="text" id="personFirstName${personIndex}" name="persons[${personIndex}].personFirstName"><br><br>
-
-                <label for="personLastName${personIndex}">Last Name:</label>
-                <input type="text" id="personLastName${personIndex}" name="persons[${personIndex}].personLastName"><br><br>
-
-                <label for="personCode${personIndex}">Person Code:</label>
-                <input type="text" id="personCode${personIndex}" name="persons[${personIndex}].personCode"><br><br>
-
-                <label for="dateOfBirth${personIndex}">Birth Date:</label>
-                <input type="date" id="dateOfBirth${personIndex}" name="persons[${personIndex}].dateOfBirth"><br><br>
-
-                <label for="medicalRiskLimitLevel${personIndex}">Medical Risk Limit Level:</label>
-                <input type="text" id="medicalRiskLimitLevel${personIndex}" name="persons[${personIndex}].medicalRiskLimitLevel"><br><br>
-
-                <label for="travelCost${personIndex}">Travel Risk Cost:</label>
-                <input type="text" id="travelCost${personIndex}" name="persons[${personIndex}].travelCost"><br><br>
-
-            `;
-            personsContainer.appendChild(personDiv);
+    <title>Расчёт стоимости страховки — Путешествия (Мульти-персон)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fc;
+            margin: 0;
+            padding: 30px;
         }
-    </script>
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        .select-box {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: white;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .secondary-button {
+            background-color: #95a5a6;
+        }
+
+        .secondary-button:hover {
+            background-color: #7f8c8d;
+        }
+
+        .toggle-pdf-button {
+            margin-top: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-pdf-button.active {
+            background-color: #2ecc71;
+        }
+
+        .toggle-pdf-button:hover {
+            background-color: #c0392b;
+        }
+
+        .toggle-pdf-button.active:hover {
+            background-color: #27ae60;
+        }
+
+        .errors, .results {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 6px solid;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .errors { border-color: #e74c3c; }
+        .results { border-color: #3498db; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h3, h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .custom-multiselect {
+            position: relative;
+            margin-top: 10px;
+            user-select: none;
+        }
+
+        .options-container {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+            max-height: 180px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 5px;
+        }
+
+        .options-container label {
+            display: block;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+
+        .options-container label:hover {
+            background-color: #f0f0f0;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        .person-container {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e4e8;
+            position: relative;
+        }
+
+        .remove-person-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .remove-person-button:hover {
+            background-color: #c0392b;
+        }
+
+        .add-person-button {
+            background-color: #2ecc71;
+            margin-top: 20px;
+        }
+
+        .add-person-button:hover {
+            background-color: #27ae60;
+        }
+
+        .travel-cost-field, .medical-risk-field {
+            display: none;
+        }
+
+        .travel-cost-field.visible, .medical-risk-field.visible {
+            display: block;
+        }
+
+        .selected-risks {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #34495e;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .selected-risks.has-risks {
+            border: 1px solid #2ecc71;
+        }
+
+        .selected-risks ul {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0 0;
+        }
+
+        .selected-risks li {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .selected-risks li.no-risks {
+            background-color: transparent;
+            color: #e74c3c;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Travel Insurance Premium Calculation</h1>
+<button onclick="window.location.href='/'" class="secondary-button back-button">
+    ← Назад на главную
+</button>
 
-<form action="/insurance/travel/web/v2" th:object="${request}" method="post">
+<h1>Расчёт стоимости страховки для группы лиц</h1>
 
-    <label for="agreementDateFrom">Agreement Date From:</label>
-    <input type="date" id="agreementDateFrom" th:field="*{agreementDateFrom}"><br><br>
+<div class="main-container">
 
-    <label for="agreementDateTo">Agreement Date To:</label>
-    <input type="date" id="agreementDateTo" th:field="*{agreementDateTo}"><br><br>
+    <form action="/insurance/travel/web/v2" th:object="${request}" method="post" onsubmit="return validateForm()">
 
-    <label for="country">Country:</label>
-    <input type="text" id="country" th:field="*{country}"><br><br>
+        <label for="agreementDateFrom">Дата начала договора:</label>
+        <input type="date" id="agreementDateFrom" th:field="*{agreementDateFrom}">
 
-    <label for="selectedRisks">Selected Risks (comma-separated):</label>
-    <input type="text" id="selectedRisks" th:field="*{selectedRisks}"><br><br>
+        <label for="agreementDateTo">Дата окончания договора:</label>
+        <input type="date" id="agreementDateTo" th:field="*{agreementDateTo}">
 
-    <h2>Persons</h2>
-    <div id="personsContainer"></div>
+        <label for="country">Страна назначения:</label>
+        <select id="country" th:field="*{country}">
+            <option value="">Выберите страну</option>
+            <option value="LATVIA">LATVIA</option>
+            <option value="SPAIN">SPAIN</option>
+            <option value="JAPAN">JAPAN</option>
+        </select>
 
-    <button type="button" onclick="addPerson()">Add Person</button>
-    <br><br>
-    <button type="submit">Calculate Premium</button>
-</form>
-<button onclick="window.location.href='/insurance/travel/web/v2';">Очистить форму</button>
+        <label for="selectedRisks">Выбранные риски:</label>
+        <div class="custom-multiselect">
+            <div class="select-box" onclick="toggleRiskDropdown()">Выберите риски ▾</div>
+            <div class="options-container" id="riskOptions">
+                <label><input type="checkbox" value="TRAVEL_MEDICAL" onchange="toggleConditionalFields()"> TRAVEL_MEDICAL</label>
+                <label><input type="checkbox" value="TRAVEL_CANCELLATION" onchange="toggleConditionalFields()"> TRAVEL_CANCELLATION</label>
+                <label><input type="checkbox" value="TRAVEL_LOSS_BAGGAGE" onchange="updateSelectedRisks()"> TRAVEL_LOSS_BAGGAGE</label>
+                <label><input type="checkbox" value="TRAVEL_THIRD_PARTY_LIABILITY" onchange="updateSelectedRisks()"> TRAVEL_THIRD_PARTY_LIABILITY</label>
+                <label><input type="checkbox" value="TRAVEL_EVACUATION" onchange="updateSelectedRisks()"> TRAVEL_EVACUATION</label>
+                <label><input type="checkbox" value="TRAVEL_SPORT_ACTIVITIES" onchange="updateSelectedRisks()"> TRAVEL_SPORT_ACTIVITIES</label>
+            </div>
+        </div>
+        <input type="hidden" id="selectedRisks" name="selectedRisks" th:field="*{selectedRisks}" />
+        <div class="selected-risks" id="selectedRisksList">
+            <strong>Выбранные риски:</strong>
+            <ul></ul>
+        </div>
 
-<!-- Display errors if there are any -->
-<div th:if="${response.errors != null}">
-    <h3>Travel Insurance Premium Calculation ERRORS</h3>
-    <table>
-        <tr th:each="error : ${response.errors}">
-            <td th:text="${error.errorCode}"></td>
-            <td th:text="${error.description}"></td>
-        </tr>
-    </table>
-</div>
+        <label for="exportPdf">Экспорт в PDF:</label>
+        <button type="button" id="toggleExportPdfButton" onclick="toggleExportPdf()" class="toggle-pdf-button">
+            Включить PDF
+        </button>
+        <input type="hidden" id="exportPdf" th:field="*{exportPDF}" value="false">
 
-<br>
-<!-- Display the total agreement premium -->
-<h3>
-    <label th:if="${response.agreementPremium != null}"
-           th:text="'AGREEMENT PREMIUM: ' + ${response.agreementPremium}"></label>
-</h3>
-<br>
+        <h3>Персоны</h3>
+        <div id="personsContainer"></div>
 
-<!-- Display individual premiums and risks for each person -->
-<div th:if="${response.persons != null}">
-    <h3>Individual Premiums and Risks:</h3>
-    <div th:each="person, stat : ${response.persons}">
-        <h4 th:text="'Person ' + (${stat.index} + 1) + ': ' + ${person.personFirstName} + ' ' + ${person.personLastName}"></h4>
-        <p th:text="'Premium: ' + ${person.personAgreementPremium}"></p>
+        <button type="button" onclick="addPerson()" class="add-person-button">Добавить персону</button>
 
-        <ul>
-            <li th:each="risk : ${person.risks}">
-                <span th:text="'Risk: ' + ${risk.riskIc} + ', Premium: ' + ${risk.premium}"></span>
-            </li>
-        </ul>
-        <br>
+        <div class="button-group">
+            <button type="submit">Рассчитать стоимость</button>
+            <button type="button" class="secondary-button" onclick="window.location.href='/insurance/travel/web/v2';">
+                Очистить форму
+            </button>
+        </div>
+    </form>
+
+    <div style="display: flex; flex-direction: column; gap: 30px;">
+
+        <div class="results" th:if="${response.agreementPremium != null}">
+            <h3 th:text="'Стоимость страховки: ' + ${response.agreementPremium} + ' €'"></h3>
+        </div>
+
+        <div class="results" th:if="${response.persons != null}">
+            <h3>Детали стоимости страховки:</h3>
+            <div th:each="person, stat : ${response.persons}">
+                <h4 th:text="'Персона ' + (${stat.index} + 1) + ': ' + ${person.personFirstName} + ' ' + ${person.personLastName}"></h4>
+                <table>
+                    <tr>
+                        <td>Стоимость:</td>
+                        <td th:text="${person.personAgreementPremium} + ' €'"></td>
+                    </tr>
+                    <tr th:each="risk : ${person.risks}">
+                        <td th:text="${risk.riskIc}"></td>
+                        <td th:text="${risk.premium} + ' €'"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="errors" th:if="${response.errors != null}">
+            <h3>Ошибки при расчёте</h3>
+            <table>
+                <tr th:each="error : ${response.errors}">
+                    <td th:text="${error.errorCode}"></td>
+                    <td th:text="${error.description}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
+
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function toggleExportPdf() {
+        const exportPdfField = document.getElementById('exportPdf');
+        const toggleButton = document.getElementById('toggleExportPdfButton');
+        const isEnabled = exportPdfField.value === "true";
+        exportPdfField.value = isEnabled ? "false" : "true";
+        toggleButton.textContent = isEnabled ? "Включить PDF" : "Отключить PDF";
+        toggleButton.classList.toggle('active', !isEnabled);
+    }
+
+    function toggleRiskDropdown() {
+        const options = document.getElementById("riskOptions");
+        options.style.display = options.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleConditionalFields() {
+        const cancellationCheckbox = document.querySelector('input[value="TRAVEL_CANCELLATION"]');
+        const medicalCheckbox = document.querySelector('input[value="TRAVEL_MEDICAL"]');
+        const isCancellationSelected = cancellationCheckbox.checked;
+        const isMedicalSelected = medicalCheckbox.checked;
+
+        document.querySelectorAll('.travel-cost-field').forEach(field => {
+            field.classList.toggle('visible', isCancellationSelected);
+        });
+
+        document.querySelectorAll('.medical-risk-field').forEach(field => {
+            field.classList.toggle('visible', isMedicalSelected);
+        });
+
+        updateSelectedRisks();
+    }
+
+    function updateSelectedRisks() {
+        const selectedRisks = Array.from(document.querySelectorAll('#riskOptions input[type="checkbox"]:checked'))
+            .map(cb => cb.value);
+        const riskList = document.querySelector('#selectedRisksList ul');
+        const selectedRisksContainer = document.querySelector('#selectedRisksList');
+        if (selectedRisks.length > 0) {
+            riskList.innerHTML = selectedRisks.map(risk => `<li>${risk}</li>`).join('');
+            selectedRisksContainer.classList.add('has-risks');
+        } else {
+            riskList.innerHTML = '<li class="no-risks">Риски не выбраны</li>';
+            selectedRisksContainer.classList.remove('has-risks');
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        const dropdown = document.querySelector('.custom-multiselect');
+        if (!dropdown.contains(event.target)) {
+            document.getElementById('riskOptions').style.display = 'none';
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function () {
+        const selectedRisks = Array.from(document.querySelectorAll('#riskOptions input[type="checkbox"]:checked'))
+            .map(cb => cb.value);
+        document.getElementById('selectedRisks').value = selectedRisks.join(', ');
+
+        // Устанавливаем travelCost в 0 для всех персон, если TRAVEL_CANCELLATION не выбран
+        if (!selectedRisks.includes('TRAVEL_CANCELLATION')) {
+            document.querySelectorAll('input[name$=".travelCost"]').forEach(input => {
+                input.value = 0;
+            });
+        }
+    });
+
+    function limitTravelCost(input) {
+        const maxValue = 999999;
+        if (input.value > maxValue) {
+            input.value = maxValue;
+        }
+        if (input.value < 0) {
+            input.value = 0;
+        }
+    }
+
+    function formatPersonCode(input) {
+        let value = input.value.replace(/[^0-9-]/g, '');
+        let digits = value.replace(/[^0-9]/g, '').slice(0, 6);
+        if (digits.length > 3) {
+            value = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+        } else {
+            value = digits;
+        }
+        input.value = value;
+    }
+
+    function validateForm() {
+        let isValid = true;
+
+        // Валидация personCode
+        const personCodeRegex = /^\d{3}-\d{3}$/;
+        document.querySelectorAll('input[name$=".personCode"]').forEach(input => {
+            const errorDiv = document.getElementById(input.id.replace('personCode', 'personCodeError'));
+            if (!personCodeRegex.test(input.value)) {
+                errorDiv.style.display = 'block';
+                isValid = false;
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        // Валидация travelCost, если TRAVEL_CANCELLATION выбран
+        const isCancellationSelected = document.querySelector('input[value="TRAVEL_CANCELLATION"]').checked;
+        if (isCancellationSelected) {
+            document.querySelectorAll('input[name$=".travelCost"]').forEach(input => {
+                const errorDiv = document.getElementById(input.id.replace('travelCost', 'travelCostError'));
+                const value = input.value.trim();
+                if (!value || value <= 0) {
+                    errorDiv.style.display = 'block';
+                    isValid = false;
+                } else {
+                    errorDiv.style.display = 'none';
+                }
+            });
+        }
+
+        return isValid;
+    }
+
+    function addPerson() {
+        const personsContainer = document.getElementById("personsContainer");
+        const personIndex = personsContainer.children.length;
+
+        const personDiv = document.createElement("div");
+        personDiv.className = "person-container";
+        personDiv.id = `person-${personIndex}`;
+        personDiv.innerHTML = `
+            <h3>Персона ${personIndex + 1}</h3>
+            <button type="button" class="remove-person-button" onclick="removePerson(${personIndex})">Удалить</button>
+            <label for="personFirstName${personIndex}">Имя:</label>
+            <input type="text" id="personFirstName${personIndex}" name="persons[${personIndex}].personFirstName">
+
+            <label for="personLastName${personIndex}">Фамилия:</label>
+            <input type="text" id="personLastName${personIndex}" name="persons[${personIndex}].personLastName">
+
+            <label for="personCode${personIndex}">Код пользователя (xxx-xxx):</label>
+            <input type="text" id="personCode${personIndex}" name="persons[${personIndex}].personCode" pattern="[0-9]{3}-[0-9]{3}" oninput="formatPersonCode(this)">
+            <div class="error-message" id="personCodeError${personIndex}">Код должен быть в формате xxx-xxx (например, 782-234)</div>
+
+            <label for="dateOfBirthDate${personIndex}">Дата рождения:</label>
+            <input type="date" id="dateOfBirthDate${personIndex}" name="persons[${personIndex}].dateOfBirthDate">
+
+            <div class="medical-risk-field">
+                <label for="medicalRiskLimitLevel${personIndex}">Уровень медицинского покрытия:</label>
+                <select id="medicalRiskLimitLevel${personIndex}" name="persons[${personIndex}].medicalRiskLimitLevel">
+                    <option value="">Выберите уровень</option>
+                    <option value="LEVEL_10000">LEVEL_10000</option>
+                    <option value="LEVEL_15000">LEVEL_15000</option>
+                    <option value="LEVEL_20000">LEVEL_20000</option>
+                    <option value="LEVEL_50000">LEVEL_50000</option>
+                </select>
+            </div>
+
+            <div class="travel-cost-field">
+                <label for="travelCost${personIndex}">Стоимость поездки (€):</label>
+                <input type="number" id="travelCost${personIndex}" name="persons[${personIndex}].travelCost" min="0" max="999999" step="1" value="0" oninput="limitTravelCost(this)">
+                <div class="error-message" id="travelCostError${personIndex}">Введите стоимость поездки (больше 0)</div>
+            </div>
+        `;
+        personsContainer.appendChild(personDiv);
+        toggleConditionalFields();
+    }
+
+    function removePerson(index) {
+        const personDiv = document.getElementById(`person-${index}`);
+        if (personDiv) {
+            personDiv.remove();
+            const personsContainer = document.getElementById("personsContainer");
+            Array.from(personsContainer.children).forEach((child, newIndex) => {
+                child.id = `person-${newIndex}`;
+                child.querySelector('h3').textContent = `Персона ${newIndex + 1}`;
+                child.querySelector('.remove-person-button').setAttribute('onclick', `removePerson(${newIndex})`);
+                child.querySelectorAll('input, select').forEach(input => {
+                    const name = input.name.replace(/persons\[\d+\]/, `persons[${newIndex}]`);
+                    const id = input.id.replace(/\d+$/, newIndex);
+                    input.name = name;
+                    input.id = id;
+                    input.previousElementSibling.setAttribute('for', id);
+                });
+                const errorDivs = child.querySelectorAll('.error-message');
+                errorDivs.forEach(div => {
+                    const baseId = div.id.replace(/\d+$/, '');
+                    div.id = `${baseId}${newIndex}`;
+                });
+            });
+        }
+    }
+
+    document.getElementById('exportPdf').value = "false";
+
+    document.addEventListener('DOMContentLoaded', function () {
         var date = new Date();
-        date.setDate(date.getDate() + 1); // Set to tomorrow's date
-        var dateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-        document.getElementById('agreementDateFrom').value = dateString; // Set the value of the date input
+        date.setDate(date.getDate() + 1);
+        var dateString = date.toISOString().split('T')[0];
+        document.getElementById('agreementDateFrom').value = dateString;
 
         date.setDate(date.getDate() + 1);
         dateString = date.toISOString().split('T')[0];
         document.getElementById('agreementDateTo').value = dateString;
+
+        addPerson();
+        updateSelectedRisks();
     });
 </script>
 

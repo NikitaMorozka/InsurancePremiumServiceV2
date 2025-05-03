@@ -37,6 +37,9 @@ class AgreementSaverService {
         agreement.setDateFrom(agreementDTO.getAgreementDateFrom());
         agreement.setDateTo(agreementDTO.getAgreementDateTo());
         agreement.setCountry(agreementDTO.getCountry());
+
+        agreement.setExportPDF(agreementDTO.getExportPDF());
+
         agreement.setPremium(agreementDTO.getAgreementPremium());
         return agreementRepository.save(agreement);
     }

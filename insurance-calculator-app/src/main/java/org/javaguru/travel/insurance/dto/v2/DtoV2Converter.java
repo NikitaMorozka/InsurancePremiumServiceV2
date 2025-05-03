@@ -57,6 +57,7 @@ public class DtoV2Converter { // написать тесты
         response.setAgreementDateTo(agreement.getAgreementDateTo());
         response.setUuid(agreement.getUuid());
         response.setCountry(agreement.getCountry());
+        response.setExportPDF(agreement.getExportPDF());
         response.setAgreementPremium(agreement.getAgreementPremium());
         response.setPersons(agreement.getPersons().stream().map(this::buildPersonFromResponse).toList());
         return response;
@@ -86,15 +87,18 @@ public class DtoV2Converter { // написать тесты
 
     private AgreementDTO buildAgreement(TravelCalculatePremiumRequestV2 request) {
         AgreementDTO agreement = new AgreementDTO();
+
         agreement.setAgreementDateFrom(request.getAgreementDateFrom());
         agreement.setAgreementDateTo(request.getAgreementDateTo());
         agreement.setCountry(request.getCountry());
+        agreement.setExportPDF(request.getExportPDF());
         agreement.setSelectedRisks(request.getSelectedRisks());
         agreement.setPersons(buildPersons(request));
         return agreement;
     }
     private List<PersonDTO> buildPersons(TravelCalculatePremiumRequestV2 request) {
         List<PersonDTO> personsDTO = new ArrayList<>();
+
         for(PersonRequest persons: request.getPersons()){
             PersonDTO person = new PersonDTO();
             person.setPersonFirstName(persons.getPersonFirstName());

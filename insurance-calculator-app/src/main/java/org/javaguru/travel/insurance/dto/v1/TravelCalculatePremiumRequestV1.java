@@ -36,6 +36,8 @@ public class TravelCalculatePremiumRequestV1 {
 
     private String country;
 
+    private Boolean exportPDF;
+
     private String medicalRiskLimitLevel;
 
     private BigDecimal travelCost;

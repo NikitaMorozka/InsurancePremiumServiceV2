@@ -78,6 +78,9 @@ class AgreementLoader {
         agreementDTO.setAgreementDateTo(agreement.getDateTo());
         agreementDTO.setAgreementPremium(agreement.getPremium());
         agreementDTO.setCountry(agreement.getCountry());
+        //тут тоже
+        agreementDTO.setExportPDF(agreement.getExportPDF());
+
         agreementDTO.setUuid(agreement.getUuid());
     }
 

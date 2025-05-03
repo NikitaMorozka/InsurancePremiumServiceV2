@@ -22,6 +22,11 @@
             <column name="country" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="exportPDF" type="TINYINT(1)">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="premium" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>

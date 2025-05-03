@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель навигации</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #e6f0fa 0%, #d1e3f6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease-out forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .nav-button:hover {
+            background: linear-gradient(45deg, #2980b9, #1f6391);
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+
+        .nav-button i {
+            font-size: 1.2rem;
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+
+        .nav-button:active::after {
+            width: 200px;
+            height: 200px;
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .nav-button {
+                width: 100%;
+                max-width: 350px;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Добро пожаловать в страховой портал</h1>
+
+<div class="button-container">
+    <a href="/insurance/travel/web/v1" class="nav-button" style="--i: 1">
+        <i class="fas fa-user"></i> Расчёт страховки для одного клиента
+    </a>
+    <a href="/insurance/travel/web/v2" class="nav-button" style="--i: 2">
+        <i class="fas fa-users"></i> Расчёт страховки для группы лиц
+    </a>
+    <a href="http://localhost:8090/blacklist/person/check/web" class="nav-button" style="--i: 3">
+        <i class="fas fa-search"></i> Проверить клиента в чёрном списке
+    </a>
+    <a href="http://localhost:8090/blacklist/persons/get/web" class="nav-button" style="--i: 4">
+        <i class="fas fa-user-slash"></i> Удалить клиента из чёрного списка
+    </a>
+</div>
+
+</body>
+</html>

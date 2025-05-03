@@ -25,11 +25,10 @@ public class AgreementDTO {
     @JsonSerialize(using = LocalDateSerializer.class)  // Можно добавить сериализатор для LocalDate
     private LocalDate agreementDateTo;
     private UUID uuid;
-
     private String country;
+    private Boolean exportPDF;
     private List<String> selectedRisks;
     private List<PersonDTO> persons;
-
     private BigDecimal agreementPremium;
 
 }

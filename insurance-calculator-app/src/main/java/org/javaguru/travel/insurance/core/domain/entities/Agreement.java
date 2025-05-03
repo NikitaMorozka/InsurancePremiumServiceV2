@@ -35,6 +35,9 @@ public class Agreement {
     @Column(name = "country", nullable = false)
     private String country;
 
+    @Column(name = "exportPDF", columnDefinition = "TINYINT(1)")
+    private Boolean exportPDF;
+
     @Column(name = "premium", precision = 10, scale = 2, nullable = false)
     private BigDecimal premium;
 

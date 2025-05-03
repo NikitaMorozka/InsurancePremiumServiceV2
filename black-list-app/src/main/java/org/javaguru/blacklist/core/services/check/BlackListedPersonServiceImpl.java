@@ -7,7 +7,7 @@ import org.javaguru.blacklist.core.api.command.BlackListedPersonCoreResult;
 import org.javaguru.blacklist.core.api.dto.BlackListedPersonDTO;
 import org.javaguru.blacklist.core.api.dto.ValidationErrorDTO;
 import org.javaguru.blacklist.core.repositories.BlackListedPersonEntityRepository;
-import org.javaguru.blacklist.core.validations.BlackListedPersonValidator;
+import org.javaguru.blacklist.core.validations.TravelPersonValidator;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class BlackListedPersonServiceImpl implements BlackListedPersonService {
 
-    private final BlackListedPersonValidator personValidator;
+    private final TravelPersonValidator personValidator;
     private final BlackListedPersonEntityRepository repository;
 
     @Override

@@ -34,6 +34,8 @@ public class TravelCalculatePremiumResponseV2 extends CoreResponse {
 
     private String country;
 
+    private Boolean exportPDF;
+
     @JsonSerialize(using = BigDecimalSerializer.class)
     private BigDecimal agreementPremium;
 
