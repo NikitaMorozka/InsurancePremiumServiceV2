@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BlackListedPersonEntityRepository extends JpaRepository<BlackListedPersonEntity, Long> {
-    @Cacheable(cacheNames = {"blackListedPersonByParams"}, key = "{#firstName, #lastName, #personCode}", unless = "#result.isEmpty()")
+    @Cacheable(cacheNames = "blackListedPersonByParams", key = "{#firstName, #lastName, #personCode}", unless = "#result == null")
     @Query("SELECT pe from BlackListedPersonEntity pe " +
             "where pe.firstName = :firstName " +
             "      and pe.lastName = :lastName " +

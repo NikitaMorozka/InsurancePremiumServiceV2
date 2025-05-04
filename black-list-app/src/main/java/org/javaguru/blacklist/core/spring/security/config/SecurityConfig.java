@@ -10,12 +10,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**", "/blacklist/person/delete/**"))
+                        .ignoringRequestMatchers("/h2-console/**", "/blacklist/person/delete/**", "/blacklist/person/check/**"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/blacklist/persons/get/web").authenticated()
                         .requestMatchers("/blacklist/person/check/web").authenticated()
